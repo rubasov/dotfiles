@@ -1,6 +1,29 @@
+## The basic prompt looks like this (except the colors):
+#
+# 23:10:29 user at host
+# ~/src/dotfiles/bashrc.d $
+#
+# 23:11:32 root at host
+# ~/src/dotfiles/bashrc.d #
+#
+## Long (>10s) commands will be timed:
+#
+# ~ $ sleep 15
+# 23:12:13 user at host 15s
+#
+## Exit codes will be displayed:
+#
+# ~ $ false
+# 23:13:26 user at host $?=1
+#
+## Human readable exit codes for death by signal:
+#
+# ~ $ foo^C
+# 23:14:16 user at host $?=SIGINT
+
 . "$__bashrc_lib"/color.sh
 
-__signal_max=31 # ignore real-time signals
+__signal_max=31 # ignore real-time signals (>31)
 for (( i = 1 ; i <= $__signal_max ; ++i ))
 do
     __sig_num_to_name[$i]=$( builtin kill -l $i )
