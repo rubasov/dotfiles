@@ -1,3 +1,5 @@
+" default settings for nvi
+
 set autoindent
 set iclower
 set filec=\	
