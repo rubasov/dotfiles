@@ -118,37 +118,51 @@ filetype plugin on
 filetype indent on
 
 function! PrettyPrint()
-let s:save_cursor = getpos('.')
-normal! H
-let s:save_top = getpos('.')
-if exists("b:current_syntax")
-    if b:current_syntax == 'perl'
-        execute "%!perltidy " . b:perltidy_options
-    elseif b:current_syntax == 'python'
-        " http://pypi.python.org/pypi/PythonTidy/
-        %!PythonTidy.py
-    elseif b:current_syntax == 'c' || b:current_syntax == 'cpp'
-        " FIXME when an error msg is printed to stderr
-        "       it gets into the buffer, though it shouldn't
-        " alternative: uncrustify
-        %!indent
-    elseif b:current_syntax == 'xml'
-        " alternative: xmllint, tidy
-        %!xmlstarlet format
-    "elseif b:current_syntax == 'html'
-    "    %!tidy --indent
-    "elseif b:current_syntax == 'xhtml'
-    "    %!tidy --indent
-    elseif b:current_syntax == 'lisp'
-        %!lispindent.lisp
+
+    " saved position of cursor
+    let s:save_cursor = getpos('.')
+
+    " saved position of window top
+    normal! H
+    let s:save_top = getpos('.')
+
+    if exists("b:current_syntax")
+
+        if b:current_syntax == 'perl'
+            execute "%!perltidy " . b:perltidy_options
+        elseif b:current_syntax == 'python'
+            " http://pypi.python.org/pypi/PythonTidy/
+            %!PythonTidy.py
+        elseif b:current_syntax == 'c' || b:current_syntax == 'cpp'
+            " FIXME when an error msg is printed to stderr
+            "       it gets into the buffer, though it shouldn't
+            " alternative: uncrustify
+            %!indent
+        elseif b:current_syntax == 'xml'
+            " alternative: xmllint, tidy
+            %!xmlstarlet format
+        "elseif b:current_syntax == 'html'
+        "    %!tidy --indent
+        "elseif b:current_syntax == 'xhtml'
+        "    %!tidy --indent
+        elseif b:current_syntax == 'lisp'
+            %!lispindent.lisp
+        endif
+
     endif
-endif
-call setpos('.', s:save_top)
-normal zt
-call setpos('.', s:save_cursor)
+
+    " restore saved position of window top
+    call setpos('.', s:save_top)
+
+    " restore saved position of cursor
+    normal zt
+    call setpos('.', s:save_cursor)
+
 endfunction
 
+" set project-specific variables based on the path of the project
 function! SetProjectVars()
+
     if match( expand("%:p:h"), "/project-foo/" ) >= 0
         let b:perltidy_options = "--profile=$HOME/.perltidyrc-foo --quiet"
     elseif match( expand("%:p:h"), "/project-bar/" ) >= 0
@@ -156,6 +170,7 @@ function! SetProjectVars()
     else
         let b:perltidy_options = "--quiet"
     endif
+
 endfunction
 
 autocmd BufRead,BufNewFile * call SetProjectVars()
@@ -169,7 +184,7 @@ autocmd BufRead,BufNewFile * call SetProjectVars()
 " http://www.vim.org/scripts/script.php?script_id=1218
 let g:mapleader = ','
 
-" force filetype detection
+" force filetype detection (mnemonic: d as in detect)
 noremap <silent> ,d :filetype detect<Enter>
 
 " tidy whole file (mnemonic: t as in tidy)
