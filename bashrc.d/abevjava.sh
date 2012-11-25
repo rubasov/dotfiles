@@ -1,1 +1,1 @@
-export KRDIR=/home/rubasov/crypt/tax/abevjava-data/eKuldes
+export KRDIR=$HOME/crypt/tax/abevjava-data/eKuldes

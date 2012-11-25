@@ -1,6 +1,6 @@
 # FIXME: always think about converting aliases to scripts under ~/bin
 
-alias p="vim /home/rubasov/.x/passwords.asc"
+alias p="vim $HOME/.x/passwords.asc"
 alias bc="bc --mathlib --quiet"
 
 # don't connect to the X server; shortens startup time in a terminal
