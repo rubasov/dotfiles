@@ -1,0 +1,73 @@
+## MPlayer configuration file
+##
+## Configuration files are read system-wide from /usr/local/etc/mplayer.conf
+## and per user from ~/.mplayer/config, where per-user settings override
+## system-wide settings, all of which are overrriden by the command line.
+##
+## The options are the same as on the command line.
+
+# suppress LIRC related errors
+nolirc = yes
+
+# on console
+# vo = fbdev
+# vf = scale=1920:1080
+
+vo = xv
+ao = alsa
+
+#af = volnorm=2:0.25
+#af = volume=+15:1
+
+# channel downmixing and else
+# http://www.mplayerhq.hu/DOCS/HTML/en/advaudio-channels.html#advaudio-channels-copying
+
+# other volume hackery
+# http://how-to.wikia.com/wiki/How_to_increase_MPlayer_volume_above_sound_cards_maximum_volume
+
+fs = yes
+ontop = no
+
+# vf=expand is great to put the subtitles on the bottom black band
+# for widescreen movies, but with vo=xv it leads to grey side bands when
+# you play a video having narrower/taller than 16/9 aspect ratio
+
+#vf = expand=aspect=16/9
+monitoraspect = 16:9
+
+cache = 65536
+cache-min = 20.0
+
+fontconfig = yes
+utf8 = yes
+font = DejaVuSerif
+#font = /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif.ttf
+
+# resample the font alphamap
+#    0     plain white fonts
+#    0.75  very narrow black outline (default)
+#    1     narrow black outline
+#   10     bold black outline
+ffactor = 1
+
+# subtitle position (100: as low as possible)
+subpos = 100
+
+# font size
+# 0    no autoscale
+# 1    proportional to movie height
+# 2    proportional to movie width
+# 3    proportional to movie diagonal (default)
+subfont-autoscale = 1
+
+# font blur radius (default: 2)
+#subfont-blur = 1.05
+#
+# font outline thickness (default: 2)
+#subfont-outline = 1.10
+#
+# autoscale coefficient (default: 5)
+subfont-text-scale = 5.0
+
+# include example
+#include = /path/to/the/file/you/want/to/include

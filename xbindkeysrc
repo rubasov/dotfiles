@@ -1,0 +1,94 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.2
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifiers:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# desktop #0
+"wmctrl -F -a screen"
+  Alt + 0
+# the same for us keyboard layout
+"wmctrl -F -a screen"
+  Alt + grave
+
+# desktop #0
+"wmctrl -a Chromium"
+  Alt + 1
+
+# desktop #1
+"wmctrl -s 1"
+  Alt + 2
+
+# desktop #2
+"wmctrl -s 2"
+  Alt + 3
+
+# desktop #3
+"wmctrl -s 3"
+  Alt + 4
+
+# desktop #4
+"wmctrl -s 4"
+  Alt + 5
+
+# maximize window
+"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+  Alt + Return
+
+# lock screen
+"xlockscreen"
+  Mod4 + l
+
+# toggle keyboard layout
+"toggle-xkbmap"
+  Menu
+
+# volume += +3% and display a volume bar
+"vol=$( amixer -c 0 set Master 3%+ | egrep -o '[0-9]+%' | head -1 | tr -d '\n\%' ) ; killall osd_cat ; osd_cat -p bottom -o 0 -A center -d 2 -b percentage -P $vol"
+  Control + Up
+
+# volume -= +3% and display a volume bar
+"vol=$( amixer -c 0 set Master 3%- | egrep -o '[0-9]+%' | head -1 | tr -d '\n\%' ) ; killall osd_cat ; osd_cat -p bottom -o 0 -A center -d 2 -b percentage -P $vol"
+  Control + Down
+
+# start a program launcher menu
+"xmenu"
+  Mod4 + x
+
+# start terminal emulator
+"menu-xterm"
+  Mod4 + t
+
+# suspend to ram
+"xlockscreen & sync && sleep 1 && sudo sh -c 'printf mem >/sys/power/state'"
+  Mod4 + s

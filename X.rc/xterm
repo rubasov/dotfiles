@@ -1,0 +1,4 @@
+# This will be passed as arguments to xterm.
+# See xterm(1) and ~/.xinitrc for more information.
+
+-j -b 6 -ls -bg black -fg white -cr green -fn -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1 -title screen -geometry 100x76+0+0

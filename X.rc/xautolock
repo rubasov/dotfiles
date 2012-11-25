@@ -1,0 +1,5 @@
+# This will be passed as arguments to xautolock.
+# See xautolock(1) and ~/.xinitrc for more information.
+# cf. with ~/.X.rc/xset-dpms
+
+-time 11 -locker xlockscreen

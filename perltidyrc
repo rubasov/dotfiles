@@ -1,0 +1,20 @@
+# http://perltidy.sourceforge.net/perltidy.html
+# the base for this config was --perl-best-practices
+--block-brace-tightness=1
+--brace-tightness=1
+--closing-token-indentation=0
+--continuation-indentation=4
+--indent-columns=4
+--maximum-line-length=78
+--no-blanks-before-comments
+--no-outdent-labels
+--no-outdent-long-lines
+--no-outdent-long-quotes
+--no-space-for-semicolon
+--paren-tightness=1
+--square-bracket-tightness=1
+--standard-error-output # errors to STDERR
+--standard-output       # output to STDOUT
+--static-side-comments
+--vertical-tightness=2
+--want-break-before="% + - * / x != == >= <= =~ !~ < > | & >= < = **= += *= &= <<= &&= -= /= |= >>= ||= .= %= ^= x="
