@@ -17,7 +17,7 @@
 #     ?amixer
 #     ...terminus...
 
-conf_dir="$HOME/.X.rc"
+conf_dir="$HOME/.Xrc.d"
 
 # start session dbus
 # will export DBUS_SESSION_BUS_ADDRESS
