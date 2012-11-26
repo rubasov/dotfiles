@@ -29,14 +29,14 @@
 " done
 "
 " see also
-"     ~/bin/256colors.pl
+"     256colors.pl - https://gist.github.com/1095100
 "     http://vimdoc.sourceforge.net/htmldoc/syntax.html#:highlight
 "     http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 "     http://vim.wikia.com/wiki/Better_colors_for_syntax_highlighting
 "     http://doc.qt.nokia.com/qq/qq26-adaptivecoloring.html
 "
 " todo
-"     graceful degradation to 16 colors?
+"     graceful degradation to 16 colors? seems impossible
 "
 " credits
 "     Bence Romsics <rubasov@gmail.com> 2012

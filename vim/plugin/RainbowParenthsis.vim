@@ -11,13 +11,13 @@
 
 " This file is public domain.
 
-
 " define colors. Note that the one numbered '16' is the outermost pair,
 " keep that in mind if you want to change the colors.
 " Also, if this script doesn't work on your terminal, you may need to add
 " guifg=xx or ever termfg=, though what good this script will do on a 
 " black and white terminal I don't know.
 
+" 256 color version
 hi level1c ctermfg=46
 hi level2c ctermfg=226
 hi level3c ctermfg=214
@@ -68,8 +68,6 @@ hi level16c ctermfg=196
 "hi level14c ctermfg=darkcyan
 "hi level15c ctermfg=darkred
 "hi level16c ctermfg=red
-
-
 
 " These are the regions for each pair.
 " This could be improved, perhaps, by makeing them match [ and { also,
