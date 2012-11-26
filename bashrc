@@ -23,6 +23,7 @@ then
     . "$__bashrc_lib"/mesg.sh
     . "$__bashrc_lib"/stty.sh
     . "$__bashrc_lib"/display.sh
+    . "$__bashrc_lib"/abevjava.sh
 fi
 
 if [ "$__profiling" == on ]

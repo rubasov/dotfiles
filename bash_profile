@@ -22,5 +22,3 @@ if [ "$TERM" != "screen" ] && [ -r "$HOME"/.bashrc ]
 then
     . "$HOME"/.bashrc
 fi
-
-. $HOME/.bashrc.d/abevjava.sh
