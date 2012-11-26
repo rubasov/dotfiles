@@ -1,9 +1,9 @@
-# FIXME: always think about converting aliases to scripts under ~/bin
+# FIXME always think about converting aliases to scripts under ~/bin
 
 alias p="vim $HOME/.x/passwords.asc"
 alias bc="bc --mathlib --quiet"
 
-# don't connect to the X server; shortens startup time in a terminal
+# Don't connect to the X server. Shortens startup time in a terminal.
 alias vim="vim -X"
 
 alias grep="grep --color=auto"
@@ -17,6 +17,7 @@ then
     alias mv="mv --interactive"
     alias rm="rm --interactive"
 else
-    # this is in conflict with an iproute binary, but I don't care
+    # This has the same name as a binary in the
+    # Debian iproute package, but I don't care.
     alias ss="exec sudo -s HOME=\"$HOME\" bash"
 fi
