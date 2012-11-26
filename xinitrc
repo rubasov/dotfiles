@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# TODO: list dependencies
+# TODO list dependencies
 #     ~/bin/decomment
 #     ~/bin/menu
 #     ~/bin/togglexkbmap
