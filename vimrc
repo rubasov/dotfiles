@@ -161,6 +161,7 @@ function! PrettyPrint()
 endfunction
 
 " set project-specific variables based on the path of the project
+" http://stackoverflow.com/questions/9202063
 function! SetProjectVars()
 
     if match( expand("%:p:h"), "/project-foo/" ) >= 0
