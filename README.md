@@ -32,3 +32,11 @@ A few things that may be worth of your attention
     by shift+page{up,down} without messing up the scrollback buffer.
 
     See screenrc and Xresources .
+
+Credits
+-------
+
+Almost all the ideas found in these dotfiles came from some hidden corner
+of the web during the last decade. I tried to always mention the source
+of my inspriation where it is due, but I'm sure I missed a few places. If
+you find an omission, let me know and I happily add it.
