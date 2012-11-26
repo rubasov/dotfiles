@@ -13,6 +13,7 @@
 --no-space-for-semicolon
 --paren-tightness=1
 --square-bracket-tightness=1
+# we want perltidy as a unix filter
 --standard-error-output # errors to STDERR
 --standard-output       # output to STDOUT
 --static-side-comments
