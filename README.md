@@ -44,4 +44,4 @@ you find an omission, let me know and I happily add it.
 See also
 --------
 
-[http://dotfiles.github.com/]()
+[http://dotfiles.github.com/](http://dotfiles.github.com/)
