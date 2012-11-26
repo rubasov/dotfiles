@@ -1,5 +1,14 @@
-" default settings for nvi
+"" nvi / nex
 
+" Automatically indent new lines.
 set autoindent
+
+" Makes all Regular Expressions case‐insensitive,
+" as long as an upper‐case letter does not appear
+" in the search string.
 set iclower
+
+" Set the character to perform file path completion
+" on the colon command line. Look out, there's a tab
+" character after the backslash.
 set filec=\	
