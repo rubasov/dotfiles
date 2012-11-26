@@ -11,7 +11,7 @@ h () {
     if [ "$#" -eq 1 -a "$1" == on ]
     then
 
-        if [ -z "__HISTIGNORE_SAVED" ]
+        if [ -z "$__HISTIGNORE_SAVED" ]
         then
             HISTIGNORE="$__HISTIGNORE_DEFAULT"
         else
