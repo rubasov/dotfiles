@@ -1,7 +1,7 @@
 (if
-  (is (window_name) "xmenu")
-  (begin
-    (undecorate)
-    (focus)
-  )
+    (is (window_name) "xmenu")
+    (begin
+        (undecorate)
+        (focus)
+    )
 )

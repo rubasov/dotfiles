@@ -1,7 +1,7 @@
 (if
-  (is (window_name) "screen")
-  (begin
-    (undecorate)
-    (focus)
-  )
+    (is (window_name) "screen")
+    (begin
+        (undecorate)
+        (focus)
+    )
 )
