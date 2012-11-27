@@ -1,22 +1,55 @@
-" vim color file
+""" vim colorscheme - experiment by rubasov
+
+""" designed for
 "
-" tested with
-"     256-color xterm
-"     black background
-"     Perl, sh, C, vim script
-"     tft monitor
-"     pretty dark room & well-lit room
+" 256-color terminal (will be unusable with 16 colors)
+" black background
+
+"" was tested
 "
-" testing
-"     :vsplit
-"     :split
-"     :set number
-"     open a few source files
-"     :colorscheme experiment
-"     :source $VIMRUNTIME/syntax/hitest.vim
-"     test: search, inc search, warning/error msg, etc
+" on tft monitors
+" in pretty dark room / well-lit office
+" on Perl, sh, C, vimscript source files
+
+""" rules for future change
 "
-" look for colors in the list
+" prefer setting foreground color only
+" avoid bold
+" avoid reverse
+" use red for error only
+" use yellow sparsely
+" bright for important, faint for less important
+
+""" color scheme explanation
+""" in rough attention order
+"
+"     darkred bg     - error
+"     yellow bg      - warning
+" 208 orange         - identifiers and constants
+"  76 green          - strings
+"     white          - cover important rest (operators, calls, ...)
+"  27 blue           - control structures
+" 162 purple         - compile time and various stuff
+" 220 yellow         - escapes
+"     grey           - comments
+" 235 dark grey      - visible tabs and trailing space
+" 234 very dark grey - visual mode selection
+
+""" testing notes
+"
+" :vsplit
+" :split
+" :set number
+" open a few source files
+" :colorscheme experiment
+" :source $VIMRUNTIME/syntax/hitest.vim
+" try:
+"     search highlight
+"     incremental search highlight
+"     warning/error messages
+
+""" color-chooser.sh
+"
 " for i in 38 48
 " do
 "     for j in 5
@@ -27,19 +60,22 @@
 "         done
 "     done
 " done
+
+""" known bugs
 "
-" see also
-"     256colors.pl - https://gist.github.com/1095100
-"     http://vimdoc.sourceforge.net/htmldoc/syntax.html#:highlight
-"     http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-"     http://vim.wikia.com/wiki/Better_colors_for_syntax_highlighting
-"     http://doc.qt.nokia.com/qq/qq26-adaptivecoloring.html
+" DiffAdd clashes with Todo (both tries to set ctermbg)
+
+""" see also
 "
-" todo
-"     graceful degradation to 16 colors? seems impossible
+" 256colors.pl - https://gist.github.com/1095100
+" http://vimdoc.sourceforge.net/htmldoc/syntax.html#:highlight
+" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" http://vim.wikia.com/wiki/Better_colors_for_syntax_highlighting
+" http://doc.qt.nokia.com/qq/qq26-adaptivecoloring.html
+
+""" credits
 "
-" credits
-"     Bence Romsics <rubasov@gmail.com> 2012
+" Bence Romsics <rubasov@gmail.com> 2012
 
 set background=dark
 highlight clear
@@ -53,49 +89,40 @@ endif
 
 let colors_name = "experiment"
 
-" color scheme explanation (rough attention order)
-"     darkred bg     - error
-"     yellow bg      - warning
-" 208 orange         - identifiers and constants
-"  76 green          - strings
-"     white          - cover important rest (operators, calls, ...)
-"  27 blue           - control structures
-" 162 purple         - compile time and various stuff
-" 220 yellow         - escapes
-"     grey           - comments
-" 235 dark grey      - visible tabs and trailing space
-" 234 very dark grey - visual mode selection
+" test by :set colorcolumn
+hi ColorColumn cterm=none ctermbg=233
+hi Comment     cterm=none ctermfg=grey
+hi Constant    cterm=none ctermfg=208
+hi Identifier  cterm=none ctermfg=208
+hi IncSearch   cterm=none ctermbg=220
 
-" rules for future change
-"     prefer setting foreground color only
-"     avoid bold
-"     avoid reverse
-"     use red for error only
-"     use yellow sparsely
-"     bright for important, faint for unimportant
+" test by :set number
+hi LineNr      cterm=none ctermfg=236
 
-hi Comment    cterm=none ctermfg=grey
-hi Constant   cterm=none ctermfg=208
-hi Identifier cterm=none ctermfg=208
-hi IncSearch  cterm=none ctermbg=220
-hi LineNr     cterm=none ctermfg=grey    " set number
-hi NonText    cterm=none ctermfg=grey    " tildes after EOF
-hi Normal     cterm=none ctermfg=white
-hi Operator   cterm=none ctermfg=white
-hi PreProc    cterm=none ctermfg=162
-hi Question   cterm=none ctermfg=darkred " Press ENTER or type command to continue
-hi Search     cterm=none ctermbg=220
-hi Special    cterm=none ctermfg=220     " escape sequences in strings
-hi SpecialKey cterm=none ctermfg=235     " visible tabs, trailing spaces, binary junk
-hi Statement  cterm=none ctermfg=27
-hi String     cterm=none ctermfg=76
-hi Todo       cterm=none ctermbg=220     " TODO FIXME
-hi Type       cterm=none ctermfg=162
-hi Visual     cterm=none ctermbg=234
-hi WarningMsg cterm=none ctermfg=darkred " search hit BOTTOM, continuing at TOP
+" tildes after end of file
+hi NonText     cterm=none ctermfg=grey
+hi Normal      cterm=none ctermfg=white
+hi Operator    cterm=none ctermfg=white
+hi PreProc     cterm=none ctermfg=162
+" "Press ENTER or type command to continue", test by :!false
+" FIXME this is actually white
+hi Question    cterm=none ctermfg=darkred
+hi Search      cterm=none ctermbg=220
 
-" additional colors for vimdiff
-" FIXME 2012-06-13 rubasov: DiffAdd-Todo clash (both tries to set ctermbg)
+" escape sequences in strings
+hi Special     cterm=none ctermfg=220
+" visible tabs, trailing spaces, binary junk, test by :set list
+hi SpecialKey  cterm=none ctermfg=235
+hi Statement   cterm=none ctermfg=27
+hi String      cterm=none ctermfg=76
+" TODO / FIXME in source
+hi Todo        cterm=none ctermbg=220
+hi Type        cterm=none ctermfg=162
+hi Visual      cterm=none ctermbg=234
+" "search hit BOTTOM, continuing at TOP"
+hi WarningMsg  cterm=none ctermfg=darkred
+
+" colors for vimdiff
 hi DiffAdd    cterm=none ctermbg=234
 hi DiffDelete cterm=none ctermbg=234 ctermfg=232
 hi DiffChange cterm=none ctermbg=234
