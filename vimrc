@@ -218,7 +218,7 @@ function! PrettyPrint()
     if exists("b:current_syntax")
 
         if b:current_syntax == 'perl'
-            execute "%!perltidy " . b:perltidy_options
+            exe "%!perltidy" b:perltidy_options
         elseif b:current_syntax == 'python'
             " http://pypi.python.org/pypi/PythonTidy/
             %!PythonTidy.py
@@ -356,7 +356,7 @@ augroup gpg
     autocmd BufReadPost,FileReadPost *.gpg,*.asc
         \ let &cmdheight = cmdheight_save|unlet cmdheight_save|redraw!
     autocmd BufReadPost,FileReadPost *.gpg,*.asc
-        \ execute ":doautocmd BufReadPost " . expand("%:r")
+        \ exe ":doautocmd BufReadPost" expand("%:r")
 
     " save position before filtering through gpg
     autocmd BufWritePre,FileWritePre *.gpg,*.asc
