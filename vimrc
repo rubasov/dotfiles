@@ -160,29 +160,32 @@ set colorcolumn=81
 "
 " :set filetype?
 
-" tab keypress in insert mode will insert spaces
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set expandtab
+" defaults
+for s:filetype in
+    \ [ "c", "cpp", "lisp", "make", "perl", "python", "sh", "vim" ]
 
-" http://vimdoc.sf.net/htmldoc/options.html#'shiftwidth'
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set shiftwidth=4
+    " tab keypress in insert mode will insert spaces
+    exe "autocmd FileType" s:filetype "set expandtab"
 
-" http://vimdoc.sf.net/htmldoc/options.html#'softtabstop'
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set softtabstop=4
+    " http://vimdoc.sf.net/htmldoc/options.html#'shiftwidth'
+    exe "autocmd FileType" s:filetype "set shiftwidth=4"
 
-" display tabs already in source according to <tabstop>
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set tabstop=8
+    " http://vimdoc.sf.net/htmldoc/options.html#'softtabstop'
+    exe "autocmd FileType" s:filetype "set softtabstop=4"
 
-" hard wrap lines after <textwidth> columns (insert newline)
-autocmd FileType c\|cpp\|lisp\|perl\|sh\|vim set textwidth=78
+    " display tabs already in source according to <tabstop>
+    exe "autocmd FileType" s:filetype "set tabstop=8"
 
-" no visible tabs in c source
-autocmd FileType c\|cpp set nolist
+    " hard wrap lines after <textwidth> columns (insert newline)
+    exe "autocmd FileType" s:filetype "set textwidth=78"
 
+endfor
+
+" override the defaults if needed
+autocmd FileType c set nolist
+autocmd FileType cpp set nolist
 autocmd FileType make set nolist
-autocmd FileType make set tabstop=4
 autocmd FileType make set noexpandtab
-autocmd FileType make set textwidth=78
-
 autocmd FileType python set textwidth=79
 
 filetype on
