@@ -160,13 +160,19 @@ set colorcolumn=81
 "
 " :set filetype?
 
-" display tabs already in source as 8 space wide
-" but always expand tabs pressed in insert mode to 4 spaces
-" hard wrap lines after 78 columns (insert newline)
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set softtabstop=4
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set shiftwidth=4
-autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set tabstop=8
+" tab keypress in insert mode will insert spaces
 autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set expandtab
+
+" http://vimdoc.sf.net/htmldoc/options.html#'shiftwidth'
+autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set shiftwidth=4
+
+" http://vimdoc.sf.net/htmldoc/options.html#'softtabstop'
+autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set softtabstop=4
+
+" display tabs already in source according to <tabstop>
+autocmd FileType c\|cpp\|lisp\|perl\|python\|sh\|vim set tabstop=8
+
+" hard wrap lines after <textwidth> columns (insert newline)
 autocmd FileType c\|cpp\|lisp\|perl\|sh\|vim set textwidth=78
 
 " no visible tabs in c source
