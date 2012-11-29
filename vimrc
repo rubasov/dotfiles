@@ -338,20 +338,15 @@ command! W w
 augroup gpg
 
     function! GpgReadPre()
-        set viminfo=
-        set noswapfile
-        set bin
-        let b:cmdheight_save = &cmdheight
-        set cmdheight=2
+        set viminfo=   " no .viminfo file
+        set noswapfile " no vim swap file
+        set bin        " .gpg is a binary format
     endfunction
 
     function! GpgReadPost()
         %!sh -c 'gpg --decrypt 2>/dev/null'
         set nobin
-        let &cmdheight = b:cmdheight_save
-        unlet b:cmdheight_save
         redraw!
-        exe ":doautocmd BufReadPost" expand("%:r")
     endfunction
 
     function! GpgWritePre()
@@ -371,6 +366,7 @@ augroup gpg
         call setpos('.', s:save_top)
         normal zt
         call setpos('.', s:save_cursor)
+        redraw! " suppress prompt (Press ENTER or type command to continue)
     endfunction
 
     function! GpgVimLeave()
