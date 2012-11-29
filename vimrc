@@ -337,6 +337,18 @@ command! W w
 " https://www.antagonism.org/privacy/gpg-vi.shtml
 augroup gpg
 
+    function! SavePosition()
+        let s:save_cursor = getpos('.')
+        normal H
+        let s:save_top = getpos('.')
+    endfunction
+
+    function! RestorePosition()
+        call setpos('.', s:save_top)
+        normal zt
+        call setpos('.', s:save_cursor)
+    endfunction
+
     function! GpgReadPre()
         set viminfo=   " no .viminfo file
         set noswapfile " no vim swap file
@@ -350,9 +362,7 @@ augroup gpg
     endfunction
 
     function! GpgWritePre()
-        let s:save_cursor = getpos('.')
-        normal! H
-        let s:save_top = getpos('.')
+        call SavePosition()
         set bin
         if match( expand("%"), "\.asc$" ) >= 0
             %!sh -c 'gpg --default-recipient-self --encrypt --armor 2>/dev/null'
@@ -364,9 +374,7 @@ augroup gpg
     function! GpgWritePost()
         u " undo the encryption so we are back to plaintext
         set nobin
-        call setpos('.', s:save_top)
-        normal zt
-        call setpos('.', s:save_cursor)
+        call RestorePosition()
         redraw! " suppress prompt (Press ENTER or type command to continue)
     endfunction
 
