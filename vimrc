@@ -382,6 +382,10 @@ augroup gpg
         " Clear the terminal screen and screen's scrollback buffer.
         " This is incomplete, the file content may remain in
         " a few buffers, e.g. in the terminal scrollback buffer.
+
+        " FIXME 2012-11-29 rubasov: eliminate magic number 65536
+        "       After clearing screen's scrollback buffer the original buffer
+        "       size should be restored, not 65536.
         exe "! echo $TERM | grep -q screen"
             \ "&& screen -X scrollback 0 ; screen -X scrollback 65536"
         !clear
