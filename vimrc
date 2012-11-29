@@ -337,58 +337,60 @@ command! W w
 " https://www.antagonism.org/privacy/gpg-vi.shtml
 augroup gpg
 
+    function! GpgReadPre()
+        set viminfo=
+        set noswapfile
+        set bin
+        let b:cmdheight_save = &cmdheight
+        set cmdheight=2
+    endfunction
+
+    function! GpgReadPost()
+        %!sh -c 'gpg --decrypt 2>/dev/null'
+        set nobin
+        let &cmdheight = b:cmdheight_save
+        unlet b:cmdheight_save
+        redraw!
+        exe ":doautocmd BufReadPost" expand("%:r")
+    endfunction
+
+    function! GpgWritePre()
+        let s:save_cursor = getpos('.')
+        normal! H
+        let s:save_top = getpos('.')
+        set bin
+        if match( expand("%"), "\.asc$" ) >= 0
+            %!sh -c 'gpg --default-recipient-self --encrypt --armor 2>/dev/null'
+        elseif match( expand("%"), "\.gpg$" ) >= 0
+            %!sh -c 'gpg --default-recipient-self --encrypt 2>/dev/null'
+        endif
+    endfunction
+
+    function! GpgWritePost()
+        u " undo the encryption so we are back to plaintext
+        call setpos('.', s:save_top)
+        normal zt
+        call setpos('.', s:save_cursor)
+    endfunction
+
+    function! GpgVimLeave()
+        " Clear the terminal screen and screen's scrollback buffer.
+        " This is incomplete, the file content may remain in
+        " a few buffers, e.g. in the terminal scrollback buffer.
+        exe "!sh -c"
+            \ "'"
+            \ "echo $TERM | grep -q screen"
+            \ "&& screen -X scrollback 0 ; screen -X scrollback 65536"
+            \ "'"
+        !clear
+    endfunction
+
     autocmd!
-
-    " do not use ~/.viminfo
-    autocmd BufReadPre,FileReadPre *.gpg,*.asc set viminfo=
-    " do not use a swap file
-    autocmd BufReadPre,FileReadPre *.gpg,*.asc set noswapfile
-
-    " switch to binary mode to read the binary pgp format
-    autocmd BufReadPre,FileReadPre *.gpg set bin
-    autocmd BufReadPre,FileReadPre *.gpg,*.asc
-        \ let cmdheight_save = &cmdheight|set cmdheight=2
-    autocmd BufReadPost,FileReadPost *.gpg,*.asc
-        \ '[,']!sh -c 'gpg --decrypt 2>/dev/null'
-
-    " switch to normal mode for editing
-    autocmd BufReadPost,FileReadPost *.gpg set nobin
-    autocmd BufReadPost,FileReadPost *.gpg,*.asc
-        \ let &cmdheight = cmdheight_save|unlet cmdheight_save|redraw!
-    autocmd BufReadPost,FileReadPost *.gpg,*.asc
-        \ exe ":doautocmd BufReadPost" expand("%:r")
-
-    " save position before filtering through gpg
-    autocmd BufWritePre,FileWritePre *.gpg,*.asc
-        \ let s:save_cursor = getpos('.')
-    autocmd BufWritePre,FileWritePre *.gpg,*.asc
-        \ normal! H
-    autocmd BufWritePre,FileWritePre *.gpg,*.asc
-        \ let s:save_top = getpos('.')
-
-    " encrypt text before writing
-    autocmd BufWritePre,FileWritePre *.gpg set bin
-    autocmd BufWritePre,FileWritePre *.gpg
-        \ '[,']!sh -c 'gpg --default-recipient-self --encrypt 2>/dev/null'
-    autocmd BufWritePre,FileWritePre *.asc
-        \ '[,']!sh -c 'gpg --default-recipient-self --encrypt --armor 2>/dev/null'
-    " undo the encryption so we are back in the normal text
-    autocmd BufWritePost,FileWritePost *.gpg,*.asc u
-
-    " restore position
-    autocmd BufWritePost,FileWritePost *.gpg,*.asc
-        \ call setpos('.', s:save_top)
-    autocmd BufWritePost,FileWritePost *.gpg,*.asc
-        \ normal zt
-    autocmd BufWritePost,FileWritePost *.gpg,*.asc
-        \ call setpos('.', s:save_cursor)
-
-    " clear the terminal screen and screen's scrollback buffer
-    " this is best effort only, the file content may remain in
-    " a few buffers, e.g. in the terminal scrollback buffer
-    autocmd VimLeave *.gpg,*.asc
-        \ !sh -c 'screen -X scrollback 0 ; screen -X scrollback 65536'
-    autocmd VimLeave *.gpg,*.asc !clear
+    autocmd BufReadPre,FileReadPre     *.asc,*.gpg call GpgReadPre()
+    autocmd BufReadPost,FileReadPost   *.asc,*.gpg call GpgReadPost()
+    autocmd BufWritePre,FileWritePre   *.asc,*.gpg call GpgWritePre()
+    autocmd BufWritePost,FileWritePost *.asc,*.gpg call GpgWritePost()
+    autocmd VimLeave                   *.asc,*.gpg call GpgVimLeave()
 
 augroup end
 
