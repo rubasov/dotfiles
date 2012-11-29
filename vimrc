@@ -356,7 +356,7 @@ augroup gpg
     endfunction
 
     function! GpgReadPost()
-        %!sh -c 'gpg --decrypt 2>/dev/null'
+        %!gpg --decrypt 2>/dev/null
         set nobin
         redraw!
     endfunction
@@ -365,9 +365,9 @@ augroup gpg
         call SavePosition()
         set bin
         if match( expand("%"), "\.asc$" ) >= 0
-            %!sh -c 'gpg --default-recipient-self --encrypt --armor 2>/dev/null'
+            %!gpg --default-recipient-self --encrypt --armor
         elseif match( expand("%"), "\.gpg$" ) >= 0
-            %!sh -c 'gpg --default-recipient-self --encrypt 2>/dev/null'
+            %!gpg --default-recipient-self --encrypt
         endif
     endfunction
 
@@ -382,11 +382,8 @@ augroup gpg
         " Clear the terminal screen and screen's scrollback buffer.
         " This is incomplete, the file content may remain in
         " a few buffers, e.g. in the terminal scrollback buffer.
-        exe "!sh -c"
-            \ "'"
-            \ "echo $TERM | grep -q screen"
+        exe "! echo $TERM | grep -q screen"
             \ "&& screen -X scrollback 0 ; screen -X scrollback 65536"
-            \ "'"
         !clear
     endfunction
 
