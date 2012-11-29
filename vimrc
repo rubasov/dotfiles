@@ -363,6 +363,7 @@ augroup gpg
 
     function! GpgWritePost()
         u " undo the encryption so we are back to plaintext
+        set nobin
         call setpos('.', s:save_top)
         normal zt
         call setpos('.', s:save_cursor)
