@@ -326,8 +326,9 @@ nnoremap <leader>v :vsplit<Enter><C-w><C-w>:e
 " http://stackoverflow.com/questions/2600783
 nnoremap <silent> <leader>w :w !sudo tee %<Enter>
 
-" fix my regular error of typing :W instead of :w
+" fix my regular error of typing upper case :W / :Q instead of lower case
 " http://stackoverflow.com/questions/3878692
+command! Q q
 command! W w
 
 
