@@ -88,6 +88,10 @@ set history=65536
 """ visible tabs and trailing whitespace
 
 " use utf-8 to make them stand out
+" U+00B7 Middle dot
+" U+00BB Right-pointing double angle quotation mark
+" one way to enter them is: <C-v>uNNNN
+" where NNNN is the unicode code point
 set encoding=utf-8
 set listchars=tab:»·,trail:·
 
