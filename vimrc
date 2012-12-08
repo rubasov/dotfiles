@@ -84,6 +84,12 @@ vnoremap ? ?\v
 " history size
 set history=65536
 
+" :help presistent-undo
+set undodir=~/.vim/undo
+set undolevels=1000
+set undoreload=10000
+set undofile
+
 
 """ visible tabs and trailing whitespace
 
@@ -337,6 +343,8 @@ command! W w
 
 
 """ transparent editing of GnuPG-encrypted files
+"
+" FIXME consider moving this to ~/.vim/ftplugin/
 
 " generate keypair before use: gpg --gen-key
 " https://www.antagonism.org/privacy/gpg-vi.shtml
@@ -357,6 +365,7 @@ augroup gpg
     function! GpgReadPre()
         set viminfo=   " no .viminfo file
         set noswapfile " no vim swap file
+        set noundofile " no vim undo file
         set bin        " .gpg is a binary format
     endfunction
 
