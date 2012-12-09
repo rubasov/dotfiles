@@ -85,7 +85,8 @@ vnoremap ? ?\v
 set history=65536
 
 " :help presistent-undo
-set undodir=~/.vim/undo
+" create undo directory before use: mkdir, chmod 700
+set undodir=~/var/lib/vim/undo
 set undolevels=1000
 set undoreload=10000
 set undofile
