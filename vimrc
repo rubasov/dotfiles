@@ -272,17 +272,24 @@ function! SetProjectVars()
     "
     " see also: http://vimdoc.sf.net/htmldoc/eval.html#expand()
 
+    " default options
+    let b:perltidy_options = "--quiet"
+
     if match( expand("%:p:h"), "/project-foo/" ) >= 0
-        let b:perltidy_options = "--profile=$HOME/.perltidyrc-foo --quiet"
+        let b:perltidy_options = b:perltidy_options
+            \ . "--profile=$HOME/.perltidyrc-foo"
     elseif match( expand("%:p:h"), "/project-bar/" ) >= 0
-        let b:perltidy_options = "--profile=$HOME/.perltidyrc-bar --quiet"
-    else
-        let b:perltidy_options = "--quiet"
+        let b:perltidy_options = b:perltidy_options
+            \ . "--profile=$HOME/.perltidyrc-bar"
     endif
 
 endfunction
 
 autocmd BufRead,BufNewFile * call SetProjectVars()
+
+" call it even if filetype was not detected automatically,
+" but set manually (:set ft=...)
+autocmd FileType * call SetProjectVars()
 
 
 """ mappings
