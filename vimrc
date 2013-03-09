@@ -81,12 +81,25 @@ vnoremap ? ?\v
 " history size
 set history=65536
 
-" :help presistent-undo
-" create undo directory before use: mkdir, chmod 700
-set undodir=~/var/lib/vim/undo
-set undolevels=1000
-set undoreload=10000
-set undofile
+" create directories before use: mkdir, chmod 700
+let s:dir = "~/var/lib/vim"
+if isdirectory(expand(s:dir))
+
+    if &directory =~# '^\.,'
+        let &directory = expand(s:dir) . "/swap," . &directory
+    endif
+
+    if &backupdir =~# '^\.,'
+        let &backupdir = expand(s:dir) . "/backup," . &backupdir
+    endif
+
+    " :help presistent-undo
+    let &undodir = expand(s:dir) . "/undo,"
+    set undolevels=1000
+    set undoreload=10000
+    set undofile
+
+endif
 
 
 """ visible tabs and trailing whitespace
