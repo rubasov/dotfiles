@@ -302,6 +302,16 @@ autocmd BufRead,BufNewFile * call SetProjectVars()
 " but set manually (:set ft=...)
 autocmd FileType * call SetProjectVars()
 
+function! ProgrammingFriendly()
+    filetype detect
+endfunction
+
+function! CopyPasteFriendly()
+    set nonumber
+    set colorcolumn=
+    set nolist
+endfunction
+
 
 """ mappings
 "
@@ -321,20 +331,11 @@ let g:mapleader = ','
 " mnemonic: d as in Detect
 nnoremap <silent> <leader>d :filetype detect<Enter>
 
-" programming-friendly mode
 " mnemonic: nm as in :set NuMber
-nnoremap <silent> <leader>nm
-    \ :set number<Enter>
-    \ :set colorcolumn=80<Enter>
-    \ :set list<Enter>
-    \ :filetype detect<Enter>
+nnoremap <silent> <leader>nm :call ProgrammingFriendly()<Enter>
 
-" clutter-free copy-paste-friendly mode
 " mnemonic: nn as in :set NoNumber
-nnoremap <silent> <leader>nn
-    \ :set nonumber<Enter>
-    \ :set colorcolumn=<Enter>
-    \ :set nolist<Enter>
+nnoremap <silent> <leader>nn :call CopyPasteFriendly()<Enter>
 
 " reload vimrc
 " mnemonic: r as in Reload
