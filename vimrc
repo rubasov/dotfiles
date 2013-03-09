@@ -216,6 +216,17 @@ autocmd FileType python let python_highlight_all = 1
 
 """ functions
 
+" I haven't found a usable python pretty printer.
+" But we have the pep8 utility to do at least half of the work.
+function! Pep8Filter()
+    silent exe "%!pep8 /dev/stdin"
+    if v:shell_error == 1
+        let l:format_error = join( getline( line("'["), line("']") ), "\n" )
+        echo l:format_error
+    endif
+    undo
+endfunction
+
 " filter the buffer through pretty printer, code beautifier
 " keep cursor position as expressed in terms of line/column
 function! PrettyPrint()
@@ -232,8 +243,7 @@ function! PrettyPrint()
         if b:current_syntax == 'perl'
             exe "%!perltidy" b:perltidy_options
         elseif b:current_syntax == 'python'
-            " http://pypi.python.org/pypi/PythonTidy/
-            %!PythonTidy.py
+            call Pep8Filter()
         elseif b:current_syntax == 'c' || b:current_syntax == 'cpp'
             " FIXME when an error msg is printed to stderr
             "       it gets into the buffer, though it shouldn't
