@@ -17,6 +17,16 @@
 #     ?amixer
 #     ...terminus...
 
+# uncomment to debug
+#
+#debug_log="/tmp/xinitrc-${USER:-unknown}.log"
+if [ "$debug_log" ]
+then
+    touch "$debug_log"
+    chmod 700 "$debug_log"
+    exec >> "$debug_log" 2>&1
+fi
+
 # .bashrc may not be sourced yet, so make sure we have a reasonable path
 . .bashrc.d/path.sh
 
