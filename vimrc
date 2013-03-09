@@ -41,9 +41,6 @@ autocmd!
 " thanks, I know which mode I'm in
 set noshowmode
 
-" line numbers
-set number
-
 " current line and column
 set ruler
 
@@ -105,12 +102,6 @@ set listchars=tab:•·,trail:·
 " use ascii
 "set listchars=tab:>-,trail:-
 
-" turn it on
-set list
-
-" turn it off if it conflicts with copy-paste
-" set nolist
-
 
 """ gvim
 
@@ -158,8 +149,6 @@ syntax on
 " 256 color
 colorscheme experiment
 
-" extra visual guide against long lines
-set colorcolumn=81
 
 
 """ languages
@@ -177,8 +166,17 @@ for s:filetype in
     \ [ "c", "cpp", "lisp", "make", "perl",
     \   "python", "sh", "sql", "mysql", "vim" ]
 
+    " http://vimdoc.sf.net/htmldoc/options.html#'colorcolumn'
+    exe "autocmd FileType" s:filetype "set colorcolumn=+1"
+
     " tab keypress in insert mode will insert spaces
     exe "autocmd FileType" s:filetype "set expandtab"
+
+    " make extraneous whitespace visible
+    exe "autocmd FileType" s:filetype "set list"
+
+    " show line numbers
+    exe "autocmd FileType" s:filetype "set number"
 
     " http://vimdoc.sf.net/htmldoc/options.html#'shiftwidth'
     exe "autocmd FileType" s:filetype "set shiftwidth=4"
