@@ -170,10 +170,12 @@ set colorcolumn=81
 " http://stackoverflow.com/questions/5324971
 "
 " :set filetype?
+" :set ft?
 
 " defaults
 for s:filetype in
-    \ [ "c", "cpp", "lisp", "make", "perl", "python", "sh", "vim" ]
+    \ [ "c", "cpp", "lisp", "make", "perl",
+    \   "python", "sh", "sql", "mysql", "vim" ]
 
     " tab keypress in insert mode will insert spaces
     exe "autocmd FileType" s:filetype "set expandtab"
