@@ -72,8 +72,6 @@ decomment < "$conf_dir/xset-dpms" |
     xargs --no-run-if-empty xset dpms
 
 # system tray
-# shortcut key bindings
-xbindkeys
 #test -x "$( which trayer )" &&
 #    decomment < "$conf_dir/trayer" |
 #        xargs --no-run-if-empty trayer &
@@ -85,6 +83,9 @@ test -x "$( which devilspie )" -a -d ~/.devilspie &&
 ## autolock screen
 #decomment < "$conf_dir/xautolock" |
 #    xargs xautolock &
+
+# shortcut key bindings
+xbindkeys
 
 # autostarted foreground programs
 decomment < "$conf_dir/xterm" |
