@@ -331,6 +331,9 @@ let g:mapleader = ','
 " mnemonic: d as in Detect
 nnoremap <silent> <leader>d :filetype detect<Enter>
 
+" shortcut for vsplit-switch-open
+nnoremap <leader>e :vsplit<Enter><C-w><C-w>:e
+
 " mnemonic: nm as in :set NuMber
 nnoremap <silent> <leader>nm :call ProgrammingFriendly()<Enter>
 
@@ -348,9 +351,6 @@ nnoremap <silent> <leader>t :call PrettyPrint()<Enter>
 " tidy selected lines (Perl-only)
 " http://stackoverflow.com/questions/9202063
 vnoremap <silent> <leader>t :!perltidy <C-r>=b:perltidy_options<Enter><Enter>
-
-" quick vsplit-switch-open
-nnoremap <leader>v :vsplit<Enter><C-w><C-w>:e 
 
 " write with sudo
 " http://stackoverflow.com/questions/2600783
@@ -406,7 +406,7 @@ augroup gpg
     endfunction
 
     function! GpgWritePost()
-        u " undo the encryption so we are back to plaintext
+        undo " undo the encryption so we are back to plaintext
         set nobin
         call RestorePosition()
         redraw! " suppress prompt (Press ENTER or type command to continue)
