@@ -17,6 +17,9 @@
 #     ?amixer
 #     ...terminus...
 
+# .bashrc may not be sourced yet, so make sure we have a reasonable path
+. .bashrc.d/path.sh
+
 conf_dir="$HOME/.Xrc.d"
 
 # start session dbus
