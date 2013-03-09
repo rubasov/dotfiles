@@ -18,15 +18,15 @@ then
 fi
 
 # clean up duplicate entries in PATH (leave the first)
-PATH=$(                     \
-    echo $PATH              \
-        | tr : \\n          \
-        | nl                \
-        | sort -u -k 2      \
-        | sort -k 1         \
-        | cut -c 8-         \
-        | tr \\n :          \
-        | sed -e 's/:$/\n/' \
+PATH=$(                          \
+    echo $PATH                   \
+        | tr : \\n               \
+        | nl                     \
+        | sort --key 2 --unique  \
+        | sort --key 1 --numeric \
+        | cut --characters 8-    \
+        | tr \\n :               \
+        | sed -e 's/:$/\n/'      \
 )
 
 export PATH
