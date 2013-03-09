@@ -1,6 +1,12 @@
 [user]
 	name = Bence Romsics
 	email = rubasov@gmail.com
+
+[alias]
+	lg = !git --no-pager log --oneline --decorate -n 24
+	st = status --short
+	tl = tag --list -n999
+
 [color]
 	branch = auto
 	diff = auto
