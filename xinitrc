@@ -72,12 +72,11 @@ decomment < "$conf_dir/xset-dpms" |
     xargs --no-run-if-empty xset dpms
 
 # system tray
-test -x "$( which trayer )" &&
-    decomment < "$conf_dir/trayer" |
-        xargs --no-run-if-empty trayer &
-
 # shortcut key bindings
 xbindkeys
+#test -x "$( which trayer )" &&
+#    decomment < "$conf_dir/trayer" |
+#        xargs --no-run-if-empty trayer &
 
 # window autoformatting
 test -x "$( which devilspie )" -a -d ~/.devilspie &&
