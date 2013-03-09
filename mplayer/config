@@ -33,7 +33,7 @@ ontop = no
 # you play a video having narrower/taller than 16/9 aspect ratio
 
 #vf = expand=aspect=16/9
-monitoraspect = 16:9
+monitoraspect = 16/9
 
 cache = 65536
 cache-min = 20.0
