@@ -163,7 +163,7 @@ colorscheme experiment
 
 " defaults
 for s:filetype in
-    \ [ "c", "cpp", "lisp", "make", "perl",
+    \ [ "c", "cpp", "gitcommit", "lisp", "make", "perl",
     \   "python", "sh", "sql", "mysql", "vim" ]
 
     " http://vimdoc.sf.net/htmldoc/options.html#'colorcolumn'
