@@ -1,3 +1,7 @@
 *~
-.*.swp
+
+.*.sw?
+vim/.netrwhist
+vim/bundle/
+
 Xrc.d/background
