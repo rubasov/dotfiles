@@ -105,12 +105,12 @@ endif
 """ visible tabs and trailing whitespace
 
 " use utf-8 to make them stand out
-" U+00B7 Middle dot
-" U+2022 Bullet
+" U+00b7 Middle dot (·)
+" U+2022 Bullet (•)
 " one way to enter them is: <C-v>uNNNN
 " where NNNN is the unicode code point
 set encoding=utf-8
-set listchars=tab:•·,trail:·
+let &listchars="tab:\u2022\u00b7,trail:\u00b7,nbsp:\u00b7"
 
 " use ascii
 "set listchars=tab:>-,trail:-
