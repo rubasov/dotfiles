@@ -208,6 +208,8 @@ filetype indent on
 " syntax color complex things like @{${"foo"}}
 autocmd FileType perl let perl_extended_vars = 1
 
+autocmd FileType python let python_highlight_all = 1
+
 " http://www.vim.org/scripts/script.php?script_id=1230
 autocmd FileType lisp runtime plugin/RainbowParenthsis.vim
 
