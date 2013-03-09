@@ -197,7 +197,6 @@ endfor
 " override the defaults if needed
 autocmd FileType c set nolist
 autocmd FileType cpp set nolist
-autocmd FileType make set nolist
 autocmd FileType make set noexpandtab
 autocmd FileType python set textwidth=79
 
