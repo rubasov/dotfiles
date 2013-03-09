@@ -32,13 +32,15 @@ fi
 
 conf_dir="$HOME/.Xrc.d"
 
-# start session dbus
-# will export DBUS_SESSION_BUS_ADDRESS
+# the bug below should be fixed in dbus-x11 1.6.2-1
 # to understand the stdin redirection see:
 #     /etc/X11/Xsession.d/75dbus_dbus-launch
 #     http://bugs.debian.org/453755
 #     https://bugs.freedesktop.org/show_bug.cgi?id=39197
-eval "$( dbus-launch --sh-syntax --exit-with-session < /dev/null )"
+#eval "$( dbus-launch --sh-syntax --exit-with-session < /dev/null )"
+
+# start session dbus (will export DBUS_SESSION_BUS_ADDRESS)
+eval "$( dbus-launch --sh-syntax --exit-with-session )"
 
 # keyboard layout
 decomment < "$conf_dir/xkbmap" |
