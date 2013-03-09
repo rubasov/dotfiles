@@ -2,6 +2,8 @@ vbell off
 zombie qr # mnemonic: (q)uit / (r)estart
 shell /bin/bash
 
+# deflogin off
+
 # terminfo and termcap for 256 color terminal.
 # http://frexx.de/xterm-256-notes/
 #
