@@ -88,8 +88,9 @@ test -x "$( which devilspie )" -a -d ~/.devilspie &&
 xbindkeys
 
 # autostarted foreground programs
-decomment < "$conf_dir/xterm" |
-    xargs xterm &
+#decomment < "$conf_dir/xterm" |
+#    xargs xterm &
+$HOME/bin/menu-screen &
 chromium-browser &
 #sonata &
 
