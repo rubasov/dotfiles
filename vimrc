@@ -134,6 +134,41 @@ set wildmode=longest:list
 set pastetoggle=<F12>
 
 
+""" load plugins
+
+" :set runtimepath?
+
+" https://github.com/tpope/vim-pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
+" plugin setup example (nerdcommenter)
+"
+" mkdir -p ~/src/github/scrooloose
+" cd ~/src/github/scrooloose
+" git clone https://github.com/scrooloose/nerdcommenter.git
+" mkdir -p ~/.vim/bundle
+" cd ~/.vim/bundle
+" ln -s ~/src/github/scrooloose/nerdcommenter .
+"
+" After this pathogen should load nerdcommenter.
+"
+" You can enable/disable a plugin by removing/recreating the symlink.
+
+
+""" configure plugins
+
+" syntax color complex things like @{${"foo"}}
+autocmd FileType perl let perl_extended_vars = 1
+
+autocmd FileType python let python_highlight_all = 1
+
+" put python docstring in the comment highlighter category
+" FIXME this overshoots, should handle "foo" and """foo""" differently
+"hi def link pythonString Comment
+"hi def link pythonUniString Comment
+
+
 """ colors
 
 " 256-color support
@@ -201,17 +236,6 @@ autocmd FileType python set textwidth=79
 filetype on
 filetype plugin on
 filetype indent on
-
-
-""" plugin config
-
-" syntax color complex things like @{${"foo"}}
-autocmd FileType perl let perl_extended_vars = 1
-
-autocmd FileType python let python_highlight_all = 1
-
-" http://www.vim.org/scripts/script.php?script_id=1230
-"autocmd FileType lisp runtime plugin/RainbowParenthsis.vim
 
 
 """ functions
