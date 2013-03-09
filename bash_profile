@@ -27,7 +27,7 @@ then
 
     echo >&2 "Select initial program to run!"
 
-    select start in "screen" "tmux" "bash"
+    select start in "bash" "screen" "tmux" "x"
     do
         break
     done
@@ -47,6 +47,14 @@ then
             export TERM=xterm-256color
             tmux -d attach-session 2>/dev/null ||
                 exec tmux new-session
+            ;;
+
+        x)
+            # If you have authorization problems see:
+            #   * /etc/X11/Xwrapper.config
+            #   * dpkg-reconfigure x11-common
+            xinit &
+            logout
             ;;
 
         *)
