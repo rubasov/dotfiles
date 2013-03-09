@@ -1,5 +1,11 @@
 PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 
+# freedesktop.org's idea about where the user's bin/ should be
+if [ -d "$HOME/.local/bin" ]
+then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [ -d "$HOME/bin" ]
 then
     PATH="$HOME/bin:$PATH"
