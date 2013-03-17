@@ -2,8 +2,8 @@
 
 # Ideally terminal multiplexers like screen or tmux could be set as your unix
 # login shell, directly started by whatever login mechanism you have.
-# Unfortunately many times it is impossible to change your login shell (e.g. in
-# restrictive work environments) so here we do the following:
+# Unfortunately many times it is impossible to change your login shell (e.g.
+# in restrictive work environments) so here we do the following:
 #
 #   * start the desired terminal multiplexer via bash first
 #   * but make sure we don't overdo it, i.e.
@@ -27,10 +27,12 @@ then
 
     echo >&2 "Select initial program to run!"
 
-    select start in "bash" "screen" "tmux" "x"
+    select start in "bash" "screen" "x"
     do
         break
     done
+
+    ENV="HOME=$HOME USER=$USER LOGNAME=$LOGNAME TERM=$TERM"
 
     case "$start" in
 
@@ -39,21 +41,14 @@ then
             ;;
 
         screen)
-            exec screen -OU -xdR
-            ;;
-
-        tmux)
-            # http://unix.stackexchange.com/questions/1045
-            export TERM=xterm-256color
-            tmux -d attach-session 2>/dev/null ||
-                exec tmux new-session
+            exec env - $ENV screen -xdR
             ;;
 
         x)
             # If you have authorization problems see:
             #   * /etc/X11/Xwrapper.config
             #   * dpkg-reconfigure x11-common
-            xinit &
+            env - $ENV xinit &
             logout
             ;;
 
@@ -67,5 +62,4 @@ then
 
 fi
 
-test -r "$HOME"/.bashrc
-    . "$HOME"/.bashrc
+test -r "$HOME"/.bashrc && . "$HOME"/.bashrc
