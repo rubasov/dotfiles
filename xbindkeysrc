@@ -90,7 +90,3 @@
 # start terminal emulator
 "xterm"
   Mod4 + t
-
-# suspend to ram
-"xlockscreen & sync && sleep 1 && sudo sh -c 'printf mem >/sys/power/state'"
-  Mod4 + s
