@@ -1,25 +1,8 @@
 #! /bin/bash
 
-# TODO list dependencies
-#     ~/bin/decomment
-#     ~/bin/menu
-#     ~/bin/togglexkbmap
-#     ~/bin/xlockscreen
-#     devilspie
-#     feh
-#     openbox
-#     osd_cat
-#     trayer
-#     wmctrl
-#     xautolock
-#     xbindkeys
-#     xlock
-#     ?amixer
-#     ...terminus...
-
-# uncomment to debug
-#
+# uncomment to enable debug log
 #debug_log="/tmp/xinitrc-${USER:-unknown}.log"
+
 if [ "$debug_log" ]
 then
     touch "$debug_log"
@@ -27,72 +10,107 @@ then
     exec >> "$debug_log" 2>&1
 fi
 
-# .bashrc may not be sourced yet, so make sure we have a reasonable path
+# .bashrc may not be sourced yet, make sure we have a reasonable path.
 . .bashrc.d/path.sh
 
-conf_dir="$HOME/.Xrc.d"
+##
 
-# the bug below should be fixed in dbus-x11 1.6.2-1
-# to understand the stdin redirection see:
-#     /etc/X11/Xsession.d/75dbus_dbus-launch
-#     http://bugs.debian.org/453755
-#     https://bugs.freedesktop.org/show_bug.cgi?id=39197
-#eval "$( dbus-launch --sh-syntax --exit-with-session < /dev/null )"
+load_x_resources () {
+    local xresource_file="${1:-"$HOME"/.Xresources}"
 
-# start session dbus (will export DBUS_SESSION_BUS_ADDRESS)
-eval "$( dbus-launch --sh-syntax --exit-with-session )"
+    if [ -r "$xresource_file" ]
+    then
+        xrdb -load "$xresource_file"
+    fi
+}
 
-# keyboard layout
-decomment < "$conf_dir/xkbmap" |
-    xargs --no-run-if-empty setxkbmap
+load_cursor () {
+    # /usr/include/X11/bitmaps
+    xsetroot -cursor_name left_ptr
+}
 
-# autorepeat
-#xset r on
+set_keyboard_layout () {
+    setxkbmap "${1:-hu}"
+}
 
-# select cursor from
-# /usr/include/X11/bitmaps/
-#xsetroot -cursor_name left_ptr
+set_wallpaper () {
+    local wallpaper="${1:-"$HOME"/.wallpaper}"
 
-test -r "$HOME/.Xresources" &&
-    xrdb -load "$HOME/.Xresources"
+    if [ -x "$( which feh )" -a -r "$wallpaper" ]
+    then
+        feh --no-fehbg --bg-center "$wallpaper"
+    fi
+}
 
-test -d ~/.fonts -a -x ~/bin/font-helper
-    ~/bin/font-helper
+configure_screen_saver () {
+    # seconds
+    local standby=${1:-0}
+    local suspend=${2:-0}
+    local off=${3:-600}
 
-# background picture
-# --bg-tile | --bg-center
-test -x "$( which feh )" -a -r "$conf_dir/background" &&
-    feh --bg-center "$conf_dir/background"
+    xset dpms $standby $suspend $off
+}
 
-#test -x "$( which conky )" -a -r ~/.conkyrc &&
-#    conky
+enable_user_installed_fonts () {
+    if [ -d "$HOME"/.fonts -a -x "$( which font-helper )" ]
+    then
+        font-helper
+    fi
+}
 
-# screen saver
-decomment < "$conf_dir/xset-dpms" |
-    xargs --no-run-if-empty xset dpms
+##
 
-# system tray
-#test -x "$( which trayer )" &&
-#    decomment < "$conf_dir/trayer" |
-#        xargs --no-run-if-empty trayer &
+start_session_dbus () {
+    # forks to background
+    # exports DBUS_SESSION_BUS_ADDRESS
+    eval "$( dbus-launch --sh-syntax --exit-with-session )"
+}
 
-# window autoformatting
-test -x "$( which devilspie )" -a -d ~/.devilspie &&
-    devilspie --apply-to-existing &
+start_shortcut_handler () {
+    # forks to background
+    xbindkeys
+}
 
-## autolock screen
-#decomment < "$conf_dir/xautolock" |
-#    xargs xautolock &
+start_window_event_handler () {
+    if [ -x "$( which devilspie )" -a -d "$HOME"/.devilspie ]
+    then
+        devilspie --apply-to-existing &
+    fi
+}
 
-# shortcut key bindings
-xbindkeys
+start_screen_autolocker () {
+    local autolocker=xautolock
+    local locker=xlock
+    local minutes_to_lock=11
 
-# autostarted foreground programs
-#decomment < "$conf_dir/xterm" |
-#    xargs xterm &
-$HOME/bin/menu-screen &
+    if [ -x "$( which "$autolocker" )" ]
+    then
+        "$autolocker" -time "$minutes_to_lock" -locker "$locker" &
+    fi
+}
+
+## startup time settings
+
+load_x_resources &
+set_keyboard_layout &
+set_wallpaper &
+configure_screen_saver &
+enable_user_installed_fonts &
+
+# make sure it all happened, before we go ahead
+wait
+
+## start background services
+
+start_session_dbus
+start_window_event_handler
+start_shortcut_handler
+
+## start foreground programs
+
+xterm-screen &
 chromium-browser &
-#sonata &
 
-# window manager
+## start window manager
+#openbox --debug 2>&1 | ts %.s >> /tmp/openbox-debug
 exec openbox

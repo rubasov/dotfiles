@@ -1,5 +1,0 @@
-# This will be as arguments to xset dpms.
-# See xset(1) and ~/.xinitrc for more information.
-
-# standby suspend off (all seconds)
-0 0 600
