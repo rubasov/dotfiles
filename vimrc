@@ -214,8 +214,8 @@ colorscheme experiment
 
 " defaults
 for s:filetype in
-    \ [ "c", "cpp", "gitcommit", "lisp", "make", "perl",
-    \   "python", "sh", "sql", "mysql", "vim" ]
+    \ [ "c", "cpp", "gitcommit", "lisp", "make", "markdown",
+    \   "mysql", "perl", "python", "sh", "sql", "vim" ]
 
     " http://vimdoc.sf.net/htmldoc/options.html#'colorcolumn'
     exe "autocmd FileType" s:filetype "set colorcolumn=+1"
@@ -242,6 +242,9 @@ for s:filetype in
     exe "autocmd FileType" s:filetype "set textwidth=78"
 
 endfor
+
+" Recognize .md files as markdown instead of modula2.
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " override the defaults if needed
 autocmd FileType c set nolist
