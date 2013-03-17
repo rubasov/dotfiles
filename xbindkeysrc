@@ -88,7 +88,7 @@
   Mod4 + x
 
 # start terminal emulator
-"menu-xterm"
+"xterm"
   Mod4 + t
 
 # suspend to ram
