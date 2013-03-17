@@ -75,10 +75,6 @@
 "xlock"
   Mod4 + l
 
-# toggle keyboard layout
-"toggle-xkbmap"
-  Menu
-
 # volume += +3% and display a volume bar
 "vol=$( amixer -c 0 set Master 3%+ | egrep -o '[0-9]+%' | head -1 | tr -d '\n\%' ) ; killall osd_cat ; osd_cat -p bottom -o 0 -A center -d 2 -b percentage -P $vol"
   Control + Up
