@@ -1,0 +1,13 @@
+; XXX Edit together:
+;
+; ~/.devilspie/xterm-screen.ds
+; ~/.xbindkeysrc
+; ~/bin/xterm-screen
+
+(if
+    (is (window_name) "xterm-screen")
+    (begin
+        (undecorate)
+        (focus)
+    )
+)
