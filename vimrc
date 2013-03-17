@@ -53,6 +53,9 @@ set showcmd
 " highlight matches
 set showmatch
 
+" show a few lines of context even when the cursor is near to top or bottom
+set scrolloff=3
+
 
 """ search settings
 
