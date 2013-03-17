@@ -1,6 +1,9 @@
+! Changes to this file will take effect after you call:
+!     xrdb -load "$HOME/.Xresources"
+!
+! It is a good idea to load Xresources from ~/.xinitrc .
+
 ! http://www.staldal.nu/tech/2009/01/11/how-to-use-mousewheel-in-gnu-screen/
-! this will take effect after you call: xrdb -load "$HOME/.Xresources"
-! you may call it e.g. from ~/.xinitrc
 XTerm*saveLines: 0
 XTerm*vt100.translations: #override \n\
     Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
@@ -15,3 +18,18 @@ XTerm*vt100.translations: #override \n\
     <Btn5Down>: string(0x1b) string("[5T") \n\
     Shift <KeyPress> Prior: string(0x1b) string("[25S") \n\
     Shift <KeyPress> Next: string(0x1b) string("[25T") \n
+
+! xterm defaults
+! http://unix4lyfe.org/xterm/
+XTerm*font: terminus-14
+
+XTerm*foreground: white
+XTerm*background: black
+XTerm*cursorColor: green
+
+XTerm*jumpScroll: true
+
+XTerm*vt100.internalBorder: 6
+
+! hold: do not immediately destroy xterm window when the shell command completes
+XTerm*hold: false
