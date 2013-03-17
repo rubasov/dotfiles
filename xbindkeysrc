@@ -34,14 +34,20 @@
 #keystate_capslock = enable
 #keystate_scrolllock= enable
 
-# desktop #0
+# XXX Edit together:
+#
+# ~/.devilspie/xterm-screen.ds
+# ~/.xbindkeysrc
+# ~/bin/xterm-screen
+#
+# desktop #0 xterm-screen
 "wmctrl -F -a screen"
   Alt + 0
 # the same for us keyboard layout
 "wmctrl -F -a screen"
   Alt + grave
 
-# desktop #0
+# desktop #0 chromium
 "wmctrl -a Chromium"
   Alt + 1
 
