@@ -43,13 +43,8 @@ set_wallpaper () {
     fi
 }
 
-configure_screen_saver () {
-    # seconds
-    local standby=${1:-0}
-    local suspend=${2:-0}
-    local off=${3:-600}
-
-    xset dpms $standby $suspend $off
+enable_screen_saver () {
+    screensaver enable
 }
 
 enable_user_installed_fonts () {
@@ -95,7 +90,7 @@ start_screen_autolocker () {
 load_x_resources &
 set_keyboard_layout &
 set_wallpaper &
-configure_screen_saver &
+enable_screen_saver &
 enable_user_installed_fonts &
 
 # make sure it all happened, before we go ahead
