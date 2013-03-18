@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# .bashrc may not be sourced yet, make sure we have a reasonable path.
+. .bashrc.d/path.sh
+
 # uncomment to enable debug log
 #debug_log="/tmp/xinitrc-${USER:-unknown}.log"
 
@@ -9,9 +12,6 @@ then
     chmod 700 "$debug_log"
     exec >> "$debug_log" 2>&1
 fi
-
-# .bashrc may not be sourced yet, make sure we have a reasonable path.
-. .bashrc.d/path.sh
 
 ##
 
