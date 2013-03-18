@@ -30,7 +30,7 @@ autocmd!
 " command!
 
 
-""" sometimes comes handy
+""" occasionally comes handy
 
 " per-file vim settings (use with care)
 "
