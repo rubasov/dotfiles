@@ -1,6 +1,6 @@
 Host *
     ControlMaster auto
-    ControlPath %d/.ssh/cmsockets/%r@%h:%p
+    ControlPath ~/.ssh/cmsockets/%r@%h:%p
 
 Host 10.0.0.254
     User root
