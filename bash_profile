@@ -19,12 +19,12 @@
 #   * in case we could attach, detach all other clients
 
 if
-    shopt -q login_shell && # login shell
-    [[ $- =~ i ]]        && # interactive shell
-    test "$TERM"         && # terminal type is set
-    tty --silent            # attached terminal
-then
+    shopt -q login_shell &&  # login shell
+    [[ $- =~ i ]]        &&  # interactive shell
+    test "$TERM"         &&  # terminal type is set
+    tty --silent             # attached terminal
 
+then
     echo >&2 "Select initial program to run!"
 
     select start in "bash" "screen" "x"

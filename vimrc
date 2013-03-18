@@ -33,6 +33,7 @@ autocmd!
 """ sometimes comes handy
 
 " per-file vim settings (use with care)
+"
 "set modeline
 
 
@@ -131,9 +132,9 @@ set guioptions-=m
 set guioptions-=T
 
 " no scrollbars
-set guioptions-=b " bottom
-set guioptions-=l " left
-set guioptions-=r " right
+set guioptions-=b  " bottom
+set guioptions-=l  " left
+set guioptions-=r  " right
 
 
 """ misc input hackery

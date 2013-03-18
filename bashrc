@@ -1,7 +1,7 @@
 ## ~/.bashrc
 
 __bashrc_lib="$HOME/.bashrc.d"
-__profiling=off # on/off
+__profiling=off  # on/off
 
 if [ "$__profiling" == on ]
 then
