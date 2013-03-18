@@ -1,6 +1,6 @@
 export HISTCONTROL=ignoreboth # ignore duplicates and commands starting with white space
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S %z " # history display format
-__HISTIGNORE_DEFAULT="h:h *:encfs-*"
+__HISTIGNORE_DEFAULT="h:h *:e:encfs-*"
 export HISTIGNORE="${HISTIGNORE:-$__HISTIGNORE_DEFAULT}"
 export HISTFILE=$HOME/.bash_history
 export HISTSIZE=262144
