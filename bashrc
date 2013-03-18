@@ -11,18 +11,19 @@ fi
 # interactive shells
 if [[ $- =~ i ]]
 then
-    . "$__bashrc_lib"/prompt.sh
     . "$__bashrc_lib"/alias.sh
-    . "$__bashrc_lib"/completion.sh
-    . "$__bashrc_lib"/history.sh
-    . "$__bashrc_lib"/function.sh
-    . "$__bashrc_lib"/option.sh
-    . "$__bashrc_lib"/editor.sh
-    . "$__bashrc_lib"/pager.sh
     . "$__bashrc_lib"/browser.sh
-    . "$__bashrc_lib"/mesg.sh
-    . "$__bashrc_lib"/stty.sh
+    . "$__bashrc_lib"/completion.sh
     . "$__bashrc_lib"/display.sh
+    . "$__bashrc_lib"/editor.sh
+    . "$__bashrc_lib"/function.sh
+    . "$__bashrc_lib"/grep.sh
+    . "$__bashrc_lib"/history.sh
+    . "$__bashrc_lib"/mesg.sh
+    . "$__bashrc_lib"/option.sh
+    . "$__bashrc_lib"/pager.sh
+    . "$__bashrc_lib"/prompt.sh
+    . "$__bashrc_lib"/stty.sh
 fi
 
 if [ "$__profiling" == on ]
