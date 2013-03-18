@@ -10,6 +10,7 @@ if [ "$debug_log" ]
 then
     touch "$debug_log"
     chmod 700 "$debug_log"
+    set -x
     exec >> "$debug_log" 2>&1
 fi
 
