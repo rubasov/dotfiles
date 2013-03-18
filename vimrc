@@ -179,6 +179,7 @@ call pathogen#infect()
 autocmd FileType perl let perl_extended_vars = 1
 
 autocmd FileType python let python_highlight_all = 1
+autocmd FileType python let python_highlight_space_errors = 0
 
 " put python docstring in the comment highlighter category
 " FIXME this overshoots, should handle "foo" and """foo""" differently
