@@ -6,11 +6,6 @@ alias bc="bc --mathlib --quiet"
 # Don't connect to the X server. Shortens startup time in a terminal.
 alias vim="vim -X"
 
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias rgrep="rgrep --color=auto"
-
 if [ 0 -eq $EUID ]
 then
     alias cp="cp --interactive"
