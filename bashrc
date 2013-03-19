@@ -34,7 +34,7 @@ then
         bc >&2 --quiet --mathlib
 fi
 
-. "$__bashrc_lib"/umask.sh
+. "$__bashrc_lib"/path.sh
 . "$__bashrc_lib"/perl-local-lib.sh
 . "$__bashrc_lib"/proxy.sh
-. "$__bashrc_lib"/path.sh
+. "$__bashrc_lib"/umask.sh
