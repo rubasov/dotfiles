@@ -213,6 +213,13 @@ syntax on
 colorscheme experiment
 
 
+""" diff
+
+" set huge context for vimdiff to prevent folding
+set diffopt+=context:99999
+set diffopt+=filler
+set diffopt+=vertical
+
 
 """ languages
 
