@@ -21,15 +21,17 @@ XTerm*vt100.translations: #override \n\
 
 ! xterm defaults
 ! http://unix4lyfe.org/xterm/
+
+XTerm*utf8: true
+XTerm*jumpScroll: true
+XTerm*vt100.internalBorder: 6
+
 XTerm*font: terminus-14
+!XTerm*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
 
 XTerm*foreground: white
 XTerm*background: black
 XTerm*cursorColor: green
-
-XTerm*jumpScroll: true
-
-XTerm*vt100.internalBorder: 6
 
 ! hold: do not immediately destroy xterm window when the shell command completes
 XTerm*hold: false
