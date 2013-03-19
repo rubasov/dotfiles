@@ -1,4 +1,7 @@
-HISTFILE="$HOME"/.bash_history
+# bash has bad history-related defaults: If you occasionally start
+# 'bash --norc' it will truncate your .bash_history, so we have to keep
+# our history somewhere else if we don't want to lose it occasionally.
+HISTFILE="$HOME"/.bash_eternal_history
 
 # store unlimited number of commands in HISTFILE
 unset HISTFILESIZE
