@@ -156,6 +156,10 @@ set wildmode=longest:list
 " gvim can detect pasting, but vim in a terminal cannot
 set pastetoggle=<F12>
 
+" Don't connect to X. Shortens startup time, but X clipboard can't be
+" accessed and window title won't be set. cf. :help 'clipboard'
+set clipboard=exclude:.*
+
 
 """ load plugins
 
