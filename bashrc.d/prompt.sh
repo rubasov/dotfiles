@@ -1,71 +1,75 @@
-## The basic prompt looks like this (except the colors):
+## The basic prompt:
 #
-# 23:10:29 user at host
-# ~/src/dotfiles/bashrc.d $
+# ┌── HH:MM:SS user at host
+# └ ~/foo/bar
+# $
 #
-# 23:11:32 root at host
-# ~/src/dotfiles/bashrc.d #
+## For root:
 #
-## Long (>10s) commands will be timed:
+# ┌── HH:MM:SS root at host
+# └ ~/foo/bar
+# #
 #
-# ~ $ sleep 15
-# 23:12:13 user at host 15s
+## Long (>10s) commands are timed:
 #
-## Exit codes will be displayed:
+# $ sleep 15
+# ┌── HH:MM:SS user at host 15s
+# └ ~/foo/bar
+# $
 #
-# ~ $ false
-# 23:13:26 user at host $?=1
+## Exit codes are displayed:
 #
-## Human readable exit codes for death by signal:
+# $ false
+# ┌── HH:MM:SS user at host $?=1
+# └ ~/foo/bar
+# $
 #
-# ~ $ foo^C
-# 23:14:16 user at host $?=SIGINT
+## Exit codes for death by signal are human readable:
+#
+# $ sh -c 'kill -TERM $$'
+# ┌── HH:MM:SS user at host $?=SIGTERM
+# └ ~/foo/bar
+# $
+#
+## Branch and dirty flag (!) are displayed for git repositories:
+#
+# ┌── HH:MM:SS user at host
+# └ ~/src/foo/ [!master] bar
+# $
+
 
 . "$__bashrc_lib"/libcolor.sh
+. "$__bashrc_lib"/libexitcode.sh
+. "$__bashrc_lib"/libgit.sh
+. "$__bashrc_lib"/libtimer.sh ; timer_setup_trap
 
-__signal_max=31 # ignore real-time signals (>31)
-for (( i = 1 ; i <= $__signal_max ; ++i ))
-do
-    __sig_num_to_name[$i]=$( builtin kill -l $i )
-done
+cwd () {
+    if inside_git_repo
+    then
+        git_cwd
 
-print_human_exit_status () {
-    __ev=$?
-    if (( $__ev == 0 ))
-    then
-        : # be silent on success
-    elif (( 128 + 1 <= $__ev && $__ev <= 128 + $__signal_max ))
-    then
-        # translate $? to signal name
-        builtin echo -n ' $?='${__sig_num_to_name[ $(( $__ev & 127 )) ]}
     else
-        # print $? as it is by default
-        builtin echo -n ' $?='$__ev
+        builtin echo -ne "${PWD/#$HOME/~}"
+
     fi
 }
 
-# http://stackoverflow.com/questions/1862510
-timer_start () {
-    __timer=${__timer:-$SECONDS}
-}
-trap timer_start DEBUG
-
-timer_stop () {
-    __timer_display=$(( $SECONDS - $__timer ))
-    unset __timer
-}
-
-print_time_since_last_prompt () {
-    if (( __timer_display >= 10 ))
+wrap () {
+    if [ "$2" != "" ]
     then
-        builtin echo -n " ${__timer_display}s"
+        builtin echo -n "${1}${2}${3}"
     fi
 }
 
 prompt_function () {
-    __human_exit_status=$( print_human_exit_status )
+    local exit_code=$?
     timer_stop
-    __time_since_last_prompt=$( print_time_since_last_prompt )
+
+    __fragment_time="$( wrap ' ' "$( took_at_least 10 )" 's' )"
+    __fragment_exit="$( wrap ' $?=' "$( exit_code_human $exit_code )" '' )"
+    __fragment_cwd="$( cwd )"
+
+    return $exit_code
 }
 PROMPT_COMMAND=prompt_function
 
@@ -75,7 +79,7 @@ then
 else
     if [ "$USER" = "$LOGNAME" ]
     then
-        if [ "$HISTIGNORE" = "*" ]
+        if [ "$SHLVL" -gt 1 ]
         then
             __prompt=$__purple
         else
@@ -89,10 +93,21 @@ fi
 # \t the current time in 24-hour HH:MM:SS format
 # \D{format} the current time formatted by strftime(3)
 
-PS1='\[$__reset\]'
-PS1="$PS1"'\t \u at \[$__bold\]\h\[$__reset\]'
-PS1="$PS1"'$__time_since_last_prompt'
-PS1="$PS1"'$__human_exit_status'
-PS1="$PS1"'\n\w \[$__prompt\]\$\[$__reset\] '
+PS1=''
+PS1="$PS1"'\[$__reset\]'
+PS1="$PS1"$'\342\224\214'  # unicode box drawing: ┌
+PS1="$PS1"$'\342\224\200'  # unicode box drawing: ─
+PS1="$PS1"$'\342\224\200'  # unicode box drawing: ─
+PS1="$PS1"' '
+PS1="$PS1"'\t \u at \h'
+PS1="$PS1"'\[$__red\]$__fragment_exit\[$__reset\]'
+PS1="$PS1"'$__fragment_time'
+PS1="$PS1"'\n'
+PS1="$PS1"$'\342\224\224'  # unicode box drawing: └
+PS1="$PS1"' '
+PS1="$PS1"'$__fragment_cwd'
+PS1="$PS1"'\n'
+PS1="$PS1"'\[$__prompt\]\$\[$__reset\]'
+PS1="$PS1"' '
 
 export PS1
