@@ -1,35 +1,36 @@
-export HISTCONTROL=ignoreboth # ignore duplicates and commands starting with white space
-export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S %z " # history display format
-__HISTIGNORE_DEFAULT="h:h *:e:encfs-*"
-export HISTIGNORE="${HISTIGNORE:-$__HISTIGNORE_DEFAULT}"
-export HISTFILE=$HOME/.bash_history
-export HISTSIZE=262144
+HISTFILE="$HOME"/.bash_history
+
+# store unlimited number of commands in HISTFILE
 unset HISTFILESIZE
 
-# turn history recording on/off
+# number of commands to remember
+HISTSIZE=999999
+
+HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S %z "
+
+# ignore duplicates and commands starting with white space
+HISTCONTROL=ignoreboth
+
+# hide the fact that the user reached out for a tool to hide something
+__HISTIGNORE_DEFAULT="e:h"
+
+# if HISTIGNORE was present in the environment use it, otherwise use default
+HISTIGNORE="${HISTIGNORE:-$__HISTIGNORE_DEFAULT}"
+
+# toggle history recording on/off
 h () {
-    if [ "$#" -eq 1 -a "$1" == on ]
+    # off -> on
+    if [ "$HISTIGNORE" == "*" ]
     then
+        HISTIGNORE="${__HISTIGNORE_SAVED:-$__HISTIGNORE_DEFAULT}"
 
-        if [ -z "$__HISTIGNORE_SAVED" ]
-        then
-            HISTIGNORE="$__HISTIGNORE_DEFAULT"
-        else
-            HISTIGNORE="$__HISTIGNORE_SAVED"
-        fi
-
-    elif [ "$#" -eq 1 -a "$1" == off ]
+    # on -> off
+    elif [ "$HISTIGNORE" != "*" ]
     then
-
-        if [ "$HISTIGNORE" != "*" ]
-        then
-            __HISTIGNORE_SAVED="$HISTIGNORE"
-        fi
+        __HISTIGNORE_SAVED="$HISTIGNORE"
         HISTIGNORE="*"
 
-    else
-
-        echo >&2 "usage: h <on|off>"
-
     fi
+
+    echo HISTIGNORE="$HISTIGNORE"
 }
