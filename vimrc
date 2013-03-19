@@ -108,16 +108,22 @@ endif
 
 """ visible tabs and trailing whitespace
 
+" u00b7: middle dot: ·
+" u2022: bullet: •
+" u2500: box drawing single horizontal line: ─
+" u2502: box drawing single vertical line: │
+
 " use utf-8 to make them stand out
-" U+00b7 Middle dot (·)
-" U+2022 Bullet (•)
 " one way to enter them is: <C-v>uNNNN
 " where NNNN is the unicode code point
 set encoding=utf-8
-let &listchars="tab:\u2022\u00b7,trail:\u00b7,nbsp:\u00b7"
+let &listchars = "tab:\u2022\u00b7,trail:\u00b7,nbsp:\u00b7"
 
 " use ascii
 "set listchars=tab:>-,trail:-
+
+" :help 'fillchars'
+let &fillchars = "diff:\u2500,vert:\u2502"
 
 
 """ gvim
@@ -137,7 +143,7 @@ set guioptions-=l  " left
 set guioptions-=r  " right
 
 
-""" misc input hackery
+""" misc hackery
 
 " enable backspace usage outside of currently inserted part
 set backspace=indent,eol,start
