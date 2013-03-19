@@ -218,7 +218,11 @@ colorscheme experiment
 " set huge context for vimdiff to prevent folding
 set diffopt+=context:99999
 set diffopt+=filler
+set diffopt+=foldcolumn:0
 set diffopt+=vertical
+
+set nofoldenable
+set foldcolumn=0
 
 
 """ languages
