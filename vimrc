@@ -284,6 +284,8 @@ filetype indent on
 
 " I haven't found a usable python pretty printer.
 " But we have the pep8 utility to do at least half of the work.
+"" http://stackoverflow.com/questions/9466795
+"" http://stackoverflow.com/questions/2575698
 function! Pep8Filter()
     silent exe "%!pep8 /dev/stdin"
     if v:shell_error == 1
