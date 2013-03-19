@@ -1,4 +1,4 @@
-# FIXME always think about converting aliases to scripts under ~/bin
+# FIXME Always think about converting aliases to scripts under ~/bin .
 
 alias bc="bc --mathlib --quiet"
 
@@ -10,8 +10,13 @@ then
     alias cp="cp --interactive"
     alias mv="mv --interactive"
     alias rm="rm --interactive"
+
 else
-    # This has the same name as a binary in the
+    # The name ss conflicts with a binary in the
     # Debian iproute package, but I don't care.
+
+    # XXX I rarely use this environment as root nowadays so the
+    #     consequences of setting root's home may be surprising.
     alias ss="exec sudo -s HOME=\"$HOME\" bash"
+
 fi
