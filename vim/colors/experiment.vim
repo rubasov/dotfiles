@@ -42,6 +42,7 @@
 " :set number
 " open a few source files
 " :colorscheme experiment
+" :help highlight-groups
 " :source $VIMRUNTIME/syntax/hitest.vim
 " try:
 "     search highlight
