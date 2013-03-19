@@ -62,10 +62,6 @@
 "     done
 " done
 
-""" known bugs
-"
-" DiffAdd clashes with Todo (both tries to set ctermbg)
-
 """ see also
 "
 " 256colors.pl - https://gist.github.com/1095100
@@ -105,28 +101,30 @@ hi NonText     cterm=none ctermfg=grey
 hi Normal      cterm=none ctermfg=white
 hi Operator    cterm=none ctermfg=white
 hi PreProc     cterm=none ctermfg=162
-" "Press ENTER or type command to continue", test by :!false
-" FIXME this is actually white
 hi Question    cterm=none ctermfg=darkred
 hi Search      cterm=none ctermbg=220
 
 " escape sequences in strings
 hi Special     cterm=none ctermfg=220
+
 " visible tabs, trailing spaces, binary junk, test by :set list
-hi SpecialKey  cterm=none ctermfg=235
-hi Statement   cterm=none ctermfg=27
-hi String      cterm=none ctermfg=76
-" TODO / FIXME in source
-hi Todo        cterm=none ctermbg=220
-hi Type        cterm=none ctermfg=162
-hi Visual      cterm=none ctermbg=234
-" "search hit BOTTOM, continuing at TOP"
+hi SpecialKey   cterm=none ctermfg=236
+hi Statement    cterm=none ctermfg=27
+hi StatusLine   cterm=none ctermbg=233 ctermfg=white
+hi StatusLineNC cterm=none ctermbg=233 ctermfg=grey
+hi String       cterm=none ctermfg=76
+hi Todo         cterm=underline ctermbg=black ctermfg=220
+hi Type         cterm=none ctermfg=162
+hi VertSplit    cterm=none ctermfg=233
+hi Visual       cterm=none ctermbg=233
+
+" search hit BOTTOM, continuing at TOP
 hi WarningMsg  cterm=none ctermfg=darkred
 
 " colors for vimdiff
-hi DiffAdd    cterm=none ctermbg=234
-hi DiffDelete cterm=none ctermbg=234 ctermfg=232
-hi DiffChange cterm=none ctermbg=234
-hi DiffText   cterm=none ctermbg=232
+hi DiffAdd    cterm=none ctermbg=black
+hi DiffDelete cterm=none ctermbg=black ctermfg=233
+hi DiffChange cterm=none ctermbg=233
+hi DiffText   cterm=none ctermbg=233
 hi Folded     cterm=none ctermbg=darkgrey ctermfg=black
 hi FoldColumn cterm=none ctermbg=darkgrey ctermfg=black
