@@ -32,7 +32,14 @@ then
         break
     done
 
-    ENV="HOME=$HOME USER=$USER LOGNAME=$LOGNAME TERM=$TERM"
+    ENV=" \
+        HOME=$HOME \
+        LANG=$LANG \
+        LANGUAGE=$LANGUAGE \
+        LOGNAME=$LOGNAME \
+        TERM=$TERM \
+        USER=$USER \
+        "
 
     case "$start" in
 
