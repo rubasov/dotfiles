@@ -21,7 +21,7 @@
 # ~ $ foo^C
 # 23:14:16 user at host $?=SIGINT
 
-. "$__bashrc_lib"/color.sh
+. "$__bashrc_lib"/libcolor.sh
 
 __signal_max=31 # ignore real-time signals (>31)
 for (( i = 1 ; i <= $__signal_max ; ++i ))
