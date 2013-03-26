@@ -3,19 +3,10 @@
 " clear autocmds to avoid duplication
 autocmd!
 
-" to supress redefinition errors, below you'll see definitions like:
+" exclamation mark forces the definition even if it is a re-definition
 "
 " function!
 " command!
-
-
-""" occasionally comes handy
-
-" per-file vim settings (use with care)
-"
-"set modeline
-
-"
 
 
 """ load plugins
