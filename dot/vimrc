@@ -36,19 +36,7 @@ autocmd!
 "
 "set modeline
 
-
-
-" Fight vim's defaults of what's literal and what's magic in a regex.
-" \v makes the following regex "very magic", that is everything is magic
-" except _0-9A-Za-z. This seems the closest to an extended regular
-" expressions, like in egrep.
 "
-" See also :help magic .
-"
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
 
 
 """ visible tabs and trailing whitespace
@@ -107,6 +95,11 @@ autocmd FileType python let python_highlight_space_errors = 0
 " FIXME this overshoots, should handle "foo" and """foo""" differently
 "hi def link pythonString Comment
 "hi def link pythonUniString Comment
+
+" make slime default to sending to the next window in the current screen
+" http://unix.stackexchange.com/questions/20989
+let b:slime_config = {"sessionname": $STY, "windowname": $WINDOW + 1}
+let g:slime_paste_file = "$HOME/.slime_paste"
 
 
 """ colors
@@ -242,53 +235,3 @@ function! CopyPasteFriendly()
     set colorcolumn=
     set nolist
 endfunction
-
-
-""" mappings
-"
-" Help to decode map commands:
-"
-" map is recursive.
-" noremap is non-recursive.
-"
-" The extra char at the beginning (e.g. [nv]map) stands for the
-" mode in which the mapping applies. n - normal, v - visual.
-"
-" For more info see :help :map-modes .
-
-let g:mapleader = ','
-
-" force filetype (re-)detection
-" mnemonic: d as in Detect
-nnoremap <silent> <leader>d :filetype detect<Enter>
-
-" shortcut for vsplit-switch-open
-nnoremap <leader>e :vsplit<Enter><C-w><C-w>:e
-
-" mnemonic: nm as in :set NuMber
-nnoremap <silent> <leader>nm :call ProgrammingFriendly()<Enter>
-
-" mnemonic: nn as in :set NoNumber
-nnoremap <silent> <leader>nn :call CopyPasteFriendly()<Enter>
-
-" reload vimrc
-" mnemonic: r as in Reload
-nnoremap <leader>r :source ~/.vimrc<Enter>
-
-" tidy whole file
-" mnemonic: t as in Tidy
-nnoremap <silent> <leader>t :call PrettyPrint()<Enter>
-
-" tidy selected lines (Perl-only)
-" http://stackoverflow.com/questions/9202063
-vnoremap <silent> <leader>t :!perltidy <C-r>=b:perltidy_options<Enter><Enter>
-
-" write with sudo
-" http://stackoverflow.com/questions/2600783
-nnoremap <silent> <leader>w :w !sudo tee %<Enter>
-
-" fix my regular error of typing upper case :W / :Q instead of lower case
-" http://stackoverflow.com/questions/3878692
-command! Q q
-command! W w
-
