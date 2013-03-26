@@ -362,26 +362,3 @@ augroup gpg
     autocmd VimLeave                   *.asc,*.gpg call GpgVimLeave()
 
 augroup end
-
-
-""" yet another way to show tabs and trailing whitespace
-
-" This is copy-paste friendly, unlike listchars, it also doesn't show
-" trailing whitespace when you're in the middle of typing something in insert
-" mode, but it is much much more noisier visually.
-
-" make trailing whitespace visible
-" http://blog.kamil.dworakowski.name/2009/09/
-"     \ unobtrusive-highlighting-of-trailing.html
-"
-""autocmd ColorScheme * highlight ExtraWhitespace guibg=red
-"highlight ExtraWhitespace ctermbg=232
-"autocmd BufEnter * match ExtraWhitespace /\s\+$/
-"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-"autocmd InsertLeave * match ExtraWhiteSpace /\s\+$/
-
-" make tabs visible
-"
-""autocmd ColorScheme * highlight Tab guibg=red
-"highlight Tab ctermbg=232
-"autocmd BufEnter * match Tab /\t/
