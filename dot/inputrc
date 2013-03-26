@@ -1,4 +1,5 @@
 set bell-style none
+set editing-mode vi
 set input-meta on
 set mark-symlinked-directories on
 set match-hidden-files off
