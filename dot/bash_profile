@@ -32,6 +32,7 @@ then
         break
     done
 
+    # Start with a controlled environment.
     ENV=" \
         HOME=$HOME \
         LANG=$LANG \
@@ -44,7 +45,7 @@ then
     case "$start" in
 
         bash)
-            # do nothing since we already run bash
+            # Do nothing since we already run bash.
             ;;
 
         screen)
@@ -62,11 +63,14 @@ then
         *)
             echo >&2 "${BASH_SOURCE[0]}: no such menu item: $REPLY"
             echo >&2 "${BASH_SOURCE[0]}: starting bash instead"
-            # do nothing since we already run bash
+            # Do nothing since we already run bash.
             ;;
 
     esac
 
 fi
 
-test -r "$HOME"/.bashrc && . "$HOME"/.bashrc
+if [ -r "$HOME"/.bashrc ]
+then
+    . "$HOME"/.bashrc
+fi
