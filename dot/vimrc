@@ -76,17 +76,19 @@ let &fillchars = "diff:\u2500,vert:\u2502"
 " :set runtimepath?
 
 " https://github.com/tpope/vim-pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " plugin setup example (nerdcommenter)
+"
+" cd ~/.vim
+" ln -s $HOME .home
 "
 " mkdir -p ~/src/github/scrooloose
 " cd ~/src/github/scrooloose
 " git clone https://github.com/scrooloose/nerdcommenter.git
 " mkdir -p ~/.vim/bundle
 " cd ~/.vim/bundle
-" ln -s ~/src/github/scrooloose/nerdcommenter .
+" ln -s ../.home/src/github/scrooloose/nerdcommenter .
 "
 " After this pathogen should load nerdcommenter.
 "
