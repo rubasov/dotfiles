@@ -126,23 +126,6 @@ let &listchars = "tab:\u2022\u00b7,trail:\u00b7,nbsp:\u00b7"
 let &fillchars = "diff:\u2500,vert:\u2502"
 
 
-""" gvim
-
-" font
-set guifont="Terminus 14"
-
-" no menu bar
-set guioptions-=m
-
-" no toolbar
-set guioptions-=T
-
-" no scrollbars
-set guioptions-=b  " bottom
-set guioptions-=l  " left
-set guioptions-=r  " right
-
-
 """ misc hackery
 
 " enable backspace usage outside of currently inserted part
