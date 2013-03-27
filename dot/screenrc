@@ -1,5 +1,5 @@
 vbell off
-zombie qr # mnemonic: (q)uit / (r)estart
+zombie qr  # mnemonic: (q)uit / (r)estart
 shell /bin/bash
 
 defutf8 on
