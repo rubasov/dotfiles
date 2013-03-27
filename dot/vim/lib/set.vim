@@ -62,10 +62,6 @@ set foldcolumn=0
 " enable backspace usage outside of currently inserted part
 set backspace=indent,eol,start
 
-" tab completion mode for file names and commands
-" longest:list = like in bash
-set wildmode=longest:list
-
 " Don't connect to X. Shortens startup time, but X clipboard can't be
 " accessed and window title won't be set.
 " :help 'clipboard'
@@ -74,3 +70,7 @@ set clipboard=exclude:.*
 " highlight current line number
 " http://stackoverflow.com/questions/8247243
 set cursorline
+
+" tab completion mode for file names and commands
+" longest:list = like in bash
+set wildmode=longest:list
