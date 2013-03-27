@@ -100,6 +100,7 @@ hi LineNr      cterm=none ctermfg=236
 
 " tildes after end of file
 hi NonText     cterm=none ctermfg=grey
+hi MatchParen  cterm=underline ctermbg=none
 hi Normal      cterm=none ctermfg=white
 hi Operator    cterm=none ctermfg=white
 hi PreProc     cterm=none ctermfg=162
