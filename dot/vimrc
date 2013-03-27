@@ -41,11 +41,6 @@ autocmd FileType perl let perl_extended_vars = 1
 autocmd FileType python let python_highlight_all = 1
 autocmd FileType python let python_highlight_space_errors = 0
 
-" put python docstring in the comment highlighter category
-" FIXME this overshoots, should handle "foo" and """foo""" differently
-"hi def link pythonString Comment
-"hi def link pythonUniString Comment
-
 " make slime default to sending to the next window in the current screen
 " http://unix.stackexchange.com/questions/20989
 let b:slime_config = {"sessionname": $STY, "windowname": $WINDOW + 1}
