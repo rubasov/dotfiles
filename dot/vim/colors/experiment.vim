@@ -116,7 +116,7 @@ hi Statement    cterm=none ctermfg=27
 hi StatusLine   cterm=none ctermbg=233 ctermfg=white
 hi StatusLineNC cterm=none ctermbg=233 ctermfg=grey
 hi String       cterm=none ctermfg=76
-hi Todo         cterm=underline ctermbg=black ctermfg=220
+hi Todo         cterm=underline ctermbg=none ctermfg=220
 hi Type         cterm=none ctermfg=162
 hi VertSplit    cterm=none ctermfg=233
 hi Visual       cterm=none ctermbg=233
