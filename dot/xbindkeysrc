@@ -74,11 +74,11 @@
   Mod4 + l
 
 # volume += 3% and display a volume percentage
-"osd-mixer 3%+"
+"osd-mixer + 3%"
   Control + Up
 
 # volume -= 3% and display a volume percentage
-"osd-mixer 3%-"
+"osd-mixer - 3%"
   Control + Down
 
 # start a program launcher menu
