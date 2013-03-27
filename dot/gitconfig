@@ -3,9 +3,10 @@
 	email = rubasov@gmail.com
 
 [alias]
-	lg = !git --no-pager log --oneline --decorate -n 24
-	st = status --short
-	tl = tag --list -n999
+	lg   = !git --no-pager log --oneline --decorate --graph --boundary --cherry-mark
+	ln   = !git --no-pager log --oneline --decorate -n25
+	st   = status --short
+	tags = tag --list -n999
 
 [color]
 	branch = auto
