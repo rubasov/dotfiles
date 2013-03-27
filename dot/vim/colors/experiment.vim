@@ -32,8 +32,8 @@
 " 162 purple         - compile time and various stuff
 " 220 yellow         - escapes
 "     grey           - comments
-" 235 dark grey      - visible tabs and trailing space
-" 234 very dark grey - visual mode selection
+" 236 dark grey      - visible tabs and trailing space
+" 233 very dark grey - visual mode selection
 
 """ testing notes
 "
