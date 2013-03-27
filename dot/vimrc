@@ -43,8 +43,9 @@ autocmd FileType python let python_highlight_space_errors = 0
 
 " make slime default to sending to the next window in the current screen
 " http://unix.stackexchange.com/questions/20989
-let b:slime_config = {"sessionname": $STY, "windowname": $WINDOW + 1}
-let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_paste_file = "~/var/lib/vim/slime/paste"
+autocmd BufRead,BufNewFile *
+    \ let b:slime_config = {"sessionname": $STY, "windowname": $WINDOW + 1}
 
 
 """ functions
