@@ -169,3 +169,11 @@ function! CopyPasteFriendly()
     set colorcolumn=
     set nolist
 endfunction
+
+runtime lib/color.vim
+runtime lib/dir.vim
+runtime lib/filetype.vim
+runtime lib/gui.vim
+runtime lib/map.vim
+runtime lib/set.vim
+runtime lib/unicode.vim
