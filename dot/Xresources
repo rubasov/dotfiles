@@ -1,7 +1,7 @@
+! It is a good idea to load Xresources from ~/.xinitrc .
+!
 ! Changes to this file will take effect after you call:
 !     xrdb -load "$HOME/.Xresources"
-!
-! It is a good idea to load Xresources from ~/.xinitrc .
 
 ! http://www.staldal.nu/tech/2009/01/11/how-to-use-mousewheel-in-gnu-screen/
 XTerm*saveLines: 0
@@ -31,7 +31,7 @@ XTerm*font: terminus-14
 
 XTerm*foreground: white
 XTerm*background: black
-XTerm*cursorColor: green
+XTerm*cursorColor: darkred
 
 ! hold: do not immediately destroy xterm window when the shell command completes
 XTerm*hold: false
