@@ -47,3 +47,18 @@ for s:filetype in [
     exe "autocmd FileType" s:filetype "set textwidth=78"
 
 endfor
+
+" Recognize .md files as markdown instead of modula2.
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" override the defaults if needed
+autocmd FileType c set nolist
+autocmd FileType cpp set nolist
+autocmd FileType make set noexpandtab
+autocmd FileType python set textwidth=79
+autocmd FileType clojure set shiftwidth=2
+autocmd FileType clojure set softtabstop=2
+
+filetype on
+filetype plugin on
+filetype indent on
