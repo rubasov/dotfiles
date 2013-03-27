@@ -39,14 +39,14 @@
 # ~/bin/xterm-screen
 #
 # desktop #0 xterm-screen
-"wmctrl -F -a screen"
+"wmctrl -s 0 ; wmctrl -F -a xterm-screen"
   Alt + 0
 # the same for us keyboard layout
-"wmctrl -F -a screen"
+"wmctrl -s 0 ; wmctrl -F -a xterm-screen"
   Alt + grave
 
 # desktop #0 chromium
-"wmctrl -a Chromium"
+"wmctrl -s 0 ; wmctrl -a Chromium"
   Alt + 1
 
 # desktop #1
