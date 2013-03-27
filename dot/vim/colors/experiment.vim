@@ -87,11 +87,13 @@ endif
 let colors_name = "experiment"
 
 " test by :set colorcolumn
-hi ColorColumn cterm=none ctermbg=233
-hi Comment     cterm=none ctermfg=grey
-hi Constant    cterm=none ctermfg=208
-hi Identifier  cterm=none ctermfg=208
-hi IncSearch   cterm=none ctermbg=220
+hi ColorColumn  cterm=none ctermbg=233
+hi Comment      cterm=none ctermfg=grey
+hi Constant     cterm=none ctermfg=208
+hi CursorLine   cterm=none ctermbg=none
+hi CursorLineNR cterm=none ctermfg=52
+hi Identifier   cterm=none ctermfg=208
+hi IncSearch    cterm=none ctermbg=220
 
 " test by :set number
 hi LineNr      cterm=none ctermfg=236

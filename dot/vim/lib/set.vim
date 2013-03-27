@@ -70,3 +70,7 @@ set wildmode=longest:list
 " accessed and window title won't be set.
 " :help 'clipboard'
 set clipboard=exclude:.*
+
+" highlight current line number
+" http://stackoverflow.com/questions/8247243
+set cursorline
