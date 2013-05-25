@@ -65,16 +65,35 @@ function! Pep8Filter()
     undo
 endfunction
 
+function! CursorPositionRestore()
+
+    " restore saved position of window top
+    call setpos('.', b:save_top)
+
+    " restore saved position of cursor
+    normal zt
+    call setpos('.', b:save_cursor)
+
+endfunction
+
+function! CursorPositionSave()
+
+    " save position of cursor
+    let b:save_cursor = getpos('.')
+
+    " save position of window top
+    normal! H
+    let b:save_top = getpos('.')
+
+    call CursorPositionRestore()
+
+endfunction
+
 " filter the buffer through pretty printer, code beautifier
 " keep cursor position as expressed in terms of line/column
 function! PrettyPrint()
 
-    " save position of cursor
-    let s:save_cursor = getpos('.')
-
-    " save position of window top
-    normal! H
-    let s:save_top = getpos('.')
+    call CursorPositionSave()
 
     if exists("b:current_syntax")
 
@@ -100,12 +119,7 @@ function! PrettyPrint()
 
     endif
 
-    " restore saved position of window top
-    call setpos('.', s:save_top)
-
-    " restore saved position of cursor
-    normal zt
-    call setpos('.', s:save_cursor)
+    call CursorPositionRestore()
 
 endfunction
 
