@@ -35,6 +35,8 @@ call pathogen#infect()
 
 """ configure plugins
 
+autocmd FileType sh let g:is_bash = 1
+
 " syntax color complex things like @{${"foo"}}
 autocmd FileType perl let perl_extended_vars = 1
 
