@@ -2,7 +2,7 @@ export_preferred_browser () {
     local browser
     for browser in "$@"
     do
-        if [ -x $( which "$browser" ) ]
+        if which "$browser" >/dev/null 2>/dev/null
         then
             export BROWSER="$browser"
             break
