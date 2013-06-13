@@ -115,6 +115,9 @@ function! PrettyPrint()
         "    %!tidy --indent
         elseif b:current_syntax == 'lisp'
             %!lispindent.lisp
+        elseif b:current_syntax == 'clojure'
+            " XXX this is paragraph-only
+            normal =ip
         endif
 
     endif

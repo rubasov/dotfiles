@@ -59,6 +59,13 @@ nnoremap <leader>r :source ~/.vimrc<Enter>
 " slime mappings
 " https://github.com/jpalardy/vim-slime/pull/12#issuecomment-4674698
 "
+" vim-slime uses serious vimscript black magic, the following may help:
+" :help :map-operator
+" :using-<Plug>
+" :help write-plugin
+"
+" TODO ,sMOTION but don't move the cursor
+"
 " disable the default emacs-like mappings
 let g:slime_no_mappings = 1
 "
@@ -67,7 +74,7 @@ let g:slime_no_mappings = 1
 " mnemonic: ss is analogous to dd/yy/...
 " mnemonic: sv as in Slime Variables
 vmap <silent> <leader>s <Plug>SlimeRegionSend
-nmap <silent> <leader>s <Plug>SlimeSend
+nmap <silent> <leader>s <Plug>SlimeMotionSend
 nmap <silent> <leader>ss <Plug>SlimeLineSend
 nmap <silent> <leader>sv <Plug>SlimeConfig
 

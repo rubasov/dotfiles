@@ -53,11 +53,13 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " override the defaults if needed
 autocmd FileType c set nolist
-autocmd FileType cpp set nolist
-autocmd FileType make set noexpandtab
-autocmd FileType python set textwidth=79
 autocmd FileType clojure set shiftwidth=2
 autocmd FileType clojure set softtabstop=2
+autocmd FileType cpp set nolist
+autocmd FileType lisp set shiftwidth=2
+autocmd FileType lisp set softtabstop=2
+autocmd FileType make set noexpandtab
+autocmd FileType python set textwidth=79
 
 filetype on
 filetype plugin on
