@@ -1,16 +1,5 @@
 """ vim colorscheme - experiment by rubasov
 
-""" designed for
-"
-" 256-color terminal (will be unusable with 16 colors)
-" black background
-
-"" was tested
-"
-" on tft monitors
-" in pretty dark room / well-lit office
-" on Perl, sh, C, vimscript source files
-
 """ rules for future change
 "
 " prefer setting foreground color only
@@ -19,6 +8,26 @@
 " use red for error only
 " use yellow sparsely
 " bright for important, faint for less important
+
+""" see also
+"
+" :help highlight-groups
+" :source $VIMRUNTIME/syntax/hitest.vim
+" 256colors.pl - https://gist.github.com/1095100
+" http://vimdoc.sourceforge.net/htmldoc/syntax.html#:highlight
+" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" http://vim.wikia.com/wiki/Better_colors_for_syntax_highlighting
+" http://doc.qt.nokia.com/qq/qq26-adaptivecoloring.html
+
+if version > 580
+    hi clear
+    if exists("syntax_on")
+        syntax reset
+    endif
+endif
+
+set background=dark  " light / dark
+let colors_name = "experiment"
 
 """ color scheme explanation
 """ in rough attention order
@@ -35,99 +44,106 @@
 " 236 dark grey      - visible tabs and trailing space
 " 233 very dark grey - visual mode selection
 
-""" testing notes
+"" name all colors of the palette
+
+let s:darkred = "darkred"
+let s:darkerred = 52
+
+let s:gray = "gray"
+let s:darkgray = "darkgray"
+let s:darkergray = 236
+let s:darkestgray = 233
+
+let s:black = "black"
+let s:blue = 27
+let s:green = 76
+let s:magenta = 162
+let s:orange = 208
+let s:white = "white"
+let s:yellow = 220
+
+"" requires immediate attention: focus, warnings, errors
+
+exe "hi! CursorLineNR"    "cterm=none" "ctermbg=none" "ctermfg=".s:darkerred
+exe "hi! Error"           "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+exe "hi! ErrorMsg"        "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+exe "hi! ExtraWhitespace" "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+exe "hi! MatchParen"      "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+exe "hi! SpellBad"        "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+exe "hi! WarningMsg"      "cterm=none" "ctermbg=none" "ctermfg=".s:darkred
+
+"" requires awereness: searches, TODO, FIXME, XXX
+
+exe "hi! IncSearch" "cterm=none" "ctermbg=none" "ctermfg=".s:yellow
+exe "hi! Search"    "cterm=none" "ctermbg=none" "ctermfg=".s:yellow
+exe "hi! Todo"      "cterm=none" "ctermbg=none" "ctermfg=".s:yellow
+
+"" normal data
+
+exe "hi! Constant"   "cterm=none" "ctermbg=none" "ctermfg=".s:orange
+exe "hi! Directory"  "cterm=none" "ctermbg=none" "ctermfg=".s:white
+exe "hi! Identifier" "cterm=none" "ctermbg=none" "ctermfg=".s:orange
+exe "hi! Normal"     "cterm=none" "ctermbg=none" "ctermfg=".s:white
+exe "hi! Operator"   "cterm=none" "ctermbg=none" "ctermfg=".s:white
+exe "hi! PreProc"    "cterm=none" "ctermbg=none" "ctermfg=".s:magenta
+exe "hi! Question"   "cterm=none" "ctermbg=none" "ctermfg=".s:white
+exe "hi! Statement"  "cterm=none" "ctermbg=none" "ctermfg=".s:blue
+exe "hi! Title"      "cterm=none" "ctermbg=none" "ctermfg=".s:white
+exe "hi! Type"       "cterm=none" "ctermbg=none" "ctermfg=".s:magenta
+
+"" low attention data
+
+exe "hi! Comment" "cterm=none" "ctermbg=none" "ctermfg=".s:gray
+exe "hi! Special" "cterm=none" "ctermbg=none" "ctermfg=".s:yellow
+exe "hi! String"  "cterm=none" "ctermbg=none" "ctermfg=".s:green
+
+"" low attention foreground
+
+exe "hi! LineNr"     "cterm=none" "ctermbg=none" "ctermfg=".s:darkergray
+exe "hi! NonText"    "cterm=none" "ctermbg=none" "ctermfg=".s:darkergray
+exe "hi! SpecialKey" "cterm=none" "ctermbg=none" "ctermfg=".s:darkergray
+
+"" low attention background
+
+exe "hi! ColorColumn"  "cterm=none" "ctermbg=".s:darkestgray
+exe "hi! DiffChange"   "cterm=none" "ctermbg=".s:darkestgray
+exe "hi! DiffDelete"   "cterm=none" "ctermbg=".s:black       "ctermfg=".s:darkestgray
+exe "hi! DiffText"     "cterm=none" "ctermbg=".s:darkestgray
+exe "hi! StatusLine"   "cterm=none" "ctermbg=".s:darkestgray "ctermfg=".s:white
+exe "hi! StatusLineNC" "cterm=none" "ctermbg=".s:darkestgray "ctermfg=".s:gray
+exe "hi! VertSplit"    "cterm=none" "ctermbg="."none"        "ctermfg=".s:darkestgray
+exe "hi! Visual"       "cterm=none" "ctermbg=".s:darkestgray
+
+"" kill the noise
+
+exe "hi! CursorLine" "cterm=none"      "ctermbg="."none"
+exe "hi! DiffAdd"    "cterm=none"      "ctermbg=".s:black
+exe "hi! FoldColumn" "cterm=none"      "ctermbg=".s:darkgray "ctermfg=".s:black
+exe "hi! Folded"     "cterm=none"      "ctermbg=".s:darkgray "ctermfg=".s:black
+exe "hi! Underlined" "cterm=underline" "ctermbg="."none"     "ctermfg=none"
+
+"" TODO
+
+" Conceal
+" CursorColumn
+" FoldColumn
+" Folded
+" Pmenu
+" PmenuSbar
+" PmenuSel
+" PmenuThumb
+" SignColumn
+" SpellCap
+" SpellLocal
+" SpellRare
+" TabLine
+" TabLineFill
+" TabLineSel
+" WildMenu
+
+" http://blog.kamil.dworakowski.name
+"     /2009/09/unobtrusive-highlighting-of-trailing.html
 "
-" :vsplit
-" :split
-" :set number
-" open a few source files
-" :colorscheme experiment
-" :help highlight-groups
-" :source $VIMRUNTIME/syntax/hitest.vim
-" try:
-"     search highlight
-"     incremental search highlight
-"     warning/error messages
-
-""" color-chooser.sh
-"
-" for i in 38 48
-" do
-"     for j in 5
-"     do
-"         for k in $( seq 16 231 ) $( seq 232 255 )
-"         do
-"             echo -e "\x1b[${i};${j};${k}m $i $j $k foobar \x1b[0m"
-"         done
-"     done
-" done
-
-""" see also
-"
-" 256colors.pl - https://gist.github.com/1095100
-" http://vimdoc.sourceforge.net/htmldoc/syntax.html#:highlight
-" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-" http://vim.wikia.com/wiki/Better_colors_for_syntax_highlighting
-" http://doc.qt.nokia.com/qq/qq26-adaptivecoloring.html
-
-""" credits
-"
-" Bence Romsics <rubasov@gmail.com> 2012
-
-set background=dark
-highlight clear
-
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
-
-let colors_name = "experiment"
-
-" test by :set colorcolumn
-hi ColorColumn  cterm=none ctermbg=233
-hi Comment      cterm=none ctermfg=grey
-hi Constant     cterm=none ctermfg=208
-hi CursorLine   cterm=none ctermbg=none
-hi CursorLineNR cterm=none ctermfg=52
-hi Identifier   cterm=none ctermfg=208
-hi IncSearch    cterm=none ctermbg=220
-
-" test by :set number
-hi LineNr      cterm=none ctermfg=236
-
-" tildes after end of file
-hi NonText     cterm=none ctermfg=grey
-hi MatchParen  cterm=underline ctermbg=none
-hi Normal      cterm=none ctermfg=white
-hi Operator    cterm=none ctermfg=white
-hi PreProc     cterm=none ctermfg=162
-hi Question    cterm=none ctermfg=darkred
-hi Search      cterm=none ctermbg=220
-
-" escape sequences in strings
-hi Special     cterm=none ctermfg=220
-
-" visible tabs, trailing spaces, binary junk, test by :set list
-hi SpecialKey   cterm=none ctermfg=236
-hi Statement    cterm=none ctermfg=27
-hi StatusLine   cterm=none ctermbg=233 ctermfg=white
-hi StatusLineNC cterm=none ctermbg=233 ctermfg=grey
-hi String       cterm=none ctermfg=76
-hi Todo         cterm=underline ctermbg=none ctermfg=220
-hi Type         cterm=none ctermfg=162
-hi VertSplit    cterm=none ctermfg=233
-hi Visual       cterm=none ctermbg=233
-
-" search hit BOTTOM, continuing at TOP
-hi WarningMsg  cterm=none ctermfg=darkred
-
-" colors for vimdiff
-hi DiffAdd    cterm=none ctermbg=black
-hi DiffDelete cterm=none ctermbg=black ctermfg=233
-hi DiffChange cterm=none ctermbg=233
-hi DiffText   cterm=none ctermbg=233
-hi Folded     cterm=none ctermbg=darkgrey ctermfg=black
-hi FoldColumn cterm=none ctermbg=darkgrey ctermfg=black
+autocmd BufEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhiteSpace /\s\+$/
