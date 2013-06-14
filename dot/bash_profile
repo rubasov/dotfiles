@@ -35,6 +35,7 @@ then
     # Start with a controlled environment.
     ENV=" \
         HOME=$HOME \
+        DISPLAY=$DISPLAY \
         LANG=$LANG \
         LANGUAGE=$LANGUAGE \
         LOGNAME=$LOGNAME \
