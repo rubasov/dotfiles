@@ -50,14 +50,15 @@ then
             ;;
 
         screen)
-            exec env - $ENV screen -xdR
+            echo $ENV
+            eval exec env - $ENV screen -xdR
             ;;
 
         x)
             # If you have authorization problems see:
             #   * /etc/X11/Xwrapper.config
             #   * dpkg-reconfigure x11-common
-            env - $ENV xinit &
+            eval env - $ENV xinit &
             logout
             ;;
 
