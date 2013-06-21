@@ -39,6 +39,7 @@ then
         LANG=$LANG \
         LANGUAGE=$LANGUAGE \
         LOGNAME=$LOGNAME \
+        SSH_CONNECTION='$SSH_CONNECTION' \
         TERM=$TERM \
         USER=$USER \
         "
