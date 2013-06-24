@@ -51,7 +51,6 @@ then
             ;;
 
         screen)
-            echo $ENV
             eval exec env - $ENV screen -xdR
             ;;
 
