@@ -63,7 +63,7 @@ then
             ;;
 
         *)
-            echo >&2 "${BASH_SOURCE[0]}: no such menu item: $REPLY"
+            echo >&2 "${BASH_SOURCE[0]}: no such menu item: '$REPLY'"
             echo >&2 "${BASH_SOURCE[0]}: starting bash instead"
             # Do nothing since we already run bash.
             ;;
