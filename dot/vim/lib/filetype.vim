@@ -11,6 +11,7 @@ for s:filetype in [
     \ "cpp",
     \ "dot",
     \ "gitcommit",
+    \ "java",
     \ "lisp",
     \ "make",
     \ "markdown",
