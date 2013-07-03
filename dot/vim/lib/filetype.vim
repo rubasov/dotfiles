@@ -20,7 +20,8 @@ for s:filetype in [
     \ "python",
     \ "sh",
     \ "sql",
-    \ "vim"
+    \ "vim",
+    \ "xml"
     \ ]
 
     " http://vimdoc.sf.net/htmldoc/options.html#'colorcolumn'
