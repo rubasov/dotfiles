@@ -5,7 +5,7 @@
 " :set ft?
 
 " defaults
-for s:filetype in [ 
+for s:filetype in [
     \ "c",
     \ "clojure",
     \ "cpp",
