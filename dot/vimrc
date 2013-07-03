@@ -97,27 +97,30 @@ function! PrettyPrint()
 
     if exists("b:current_syntax")
 
-        if b:current_syntax == 'perl'
-            exe "%!perltidy" b:perltidy_options
-        elseif b:current_syntax == 'python'
-            call Pep8Filter()
-        elseif b:current_syntax == 'c' || b:current_syntax == 'cpp'
-            " FIXME when an error msg is printed to stderr
-            "       it gets into the buffer, though it shouldn't
+        if b:current_syntax == 'c' || b:current_syntax == 'cpp'
+            " FIXME stderr of indent gets into the buffer
             " alternative: uncrustify
-            %!indent
-        elseif b:current_syntax == 'xml'
-            " alternative: xmllint, tidy
-            %!xmlstarlet format
-        "elseif b:current_syntax == 'html'
-        "    %!tidy --indent
-        "elseif b:current_syntax == 'xhtml'
-        "    %!tidy --indent
-        elseif b:current_syntax == 'lisp'
-            %!lispindent.lisp
+            %! indent
         elseif b:current_syntax == 'clojure'
             " XXX this is paragraph-only
             normal =ip
+        elseif b:current_syntax == 'html'
+            %! tidy --indent
+        elseif b:current_syntax == 'java'
+            %! astyle --style=java
+        elseif b:current_syntax == 'javascript'
+            %! json_pp
+        elseif b:current_syntax == 'lisp'
+            %! lispindent.lisp
+        elseif b:current_syntax == 'perl'
+            exe "%! perltidy" b:perltidy_options
+        elseif b:current_syntax == 'python'
+            call Pep8Filter()
+        elseif b:current_syntax == 'xhtml'
+            %! tidy --indent
+        elseif b:current_syntax == 'xml'
+            " alternatives: xmllint, tidy
+            %! xmlstarlet format
         endif
 
     endif
